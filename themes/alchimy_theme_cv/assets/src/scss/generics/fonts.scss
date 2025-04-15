@@ -1,34 +1,34 @@
 @font-face {
-  font-family: "Gilroy";
-  src: url($baseurl + "assets/src/font/Gilroy-Regular.eot");
-  src: url($baseurl + "assets/src/font/Gilroy-Regular.eot?#iefix")
+  font-family: "orkney";
+  src: url($baseurl + "assets/src/font/orkney-Regular.eot");
+  src: url($baseurl + "assets/src/font/orkney-Regular.eot?#iefix")
       format("embedded-opentype"),
-    url($baseurl + "assets/src/font/Gilroy-Regular.woff2") format("woff2"),
-    url($baseurl + "assets/src/font/Gilroy-Regular.woff") format("woff");
+    url($baseurl + "assets/src/font/orkney-Regular.woff2") format("woff2"),
+    url($baseurl + "assets/src/font/orkney-Regular.woff") format("woff");
   font-weight: 100 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gilroy";
-  src: url($baseurl + "assets/src/font/Gilroy-SemiBold.eot");
-  src: url($baseurl + "assets/src/font/Gilroy-SemiBold.eot?#iefix")
+  font-family: "orkney";
+  src: url($baseurl + "assets/src/font/orkney-Medium.eot");
+  src: url($baseurl + "assets/src/font/orkney-Medium.eot?#iefix")
       format("embedded-opentype"),
-    url($baseurl + "assets/src/font/Gilroy-SemiBold.woff2") format("woff2"),
-    url($baseurl + "assets/src/font/Gilroy-SemiBold.woff") format("woff");
+    url($baseurl + "assets/src/font/orkney-Medium.woff2") format("woff2"),
+    url($baseurl + "assets/src/font/orkney-Medium.woff") format("woff");
   font-weight: 400 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Gilroy";
-  src: url($baseurl + "assets/src/font/Gilroy-Bold.eot");
-  src: url($baseurl + "assets/src/font/Gilroy-Bold.eot?#iefix")
+  font-family: "orkney";
+  src: url($baseurl + "assets/src/font/orkney-Bold.eot");
+  src: url($baseurl + "assets/src/font/orkney-Bold.eot?#iefix")
       format("embedded-opentype"),
-    url($baseurl + "assets/src/font/Gilroy-Bold.woff2") format("woff2"),
-    url($baseurl + "assets/src/font/Gilroy-Bold.woff") format("woff");
+    url($baseurl + "assets/src/font/orkney-Bold.woff2") format("woff2"),
+    url($baseurl + "assets/src/font/orkney-Bold.woff") format("woff");
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
