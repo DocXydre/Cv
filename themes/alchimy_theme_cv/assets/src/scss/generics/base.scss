@@ -1,0 +1,35 @@
+////
+//// BASE HTML ELEMENTS
+////
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-sans-serif;
+  font-weight: 300;
+  color: var(--color--dark);
+  margin: 0;
+  background-color: #e9e7f4;
+}
+
+////
+//// COMMON STYLES - styles used on multiple pages are below
+////
+
+.main ul,
+#recom-modal ul {
+  li {
+    list-style: none;
+    background-image: url("http://localhost:3004/wp-content/themes/alchimy_theme_#{$appName}/assets/src/img/puce.svg");
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-position-y: 4px;
+  }
+}

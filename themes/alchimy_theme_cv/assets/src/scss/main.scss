@@ -1,0 +1,39 @@
+@use "sass:map";
+
+///
+/// CONFIGURATION
+///
+
+$localMode: 0; // set to 1 to switch redirect to localhost
+
+////
+//// VENDORS
+////
+@import "vendors/alchimy-grid.scss";
+@import "vendors/normalize.scss";
+
+////
+//// FRAMEWORK
+////
+@import "framework/functions.scss";
+@import "framework/variables.scss";
+
+////
+//// GENERIC STYLES
+////
+@import "generics/fonts.scss";
+@import "generics/base.scss";
+
+////
+//// COMPONENTS
+////
+@import "components/button.scss";
+@import "components/nav.scss";
+
+////
+//// PAGES / BLOCKS
+////
+@import "partials/footer";
+@import "pages/home";
+
+@include alchimy-grid;

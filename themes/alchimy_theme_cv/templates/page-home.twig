@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="home">
+    {% if is_yoast_active %}
+        <div class="centre">
+            {{function('yoast_breadcrumb', '<p id="breadcrumbs">','</p>')}}
+        </div>
+    {% endif %}
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-16 col-md-6 offset-md-5">
+                <p class="title title-size-3">{{__("main_text", "Portfolio")}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

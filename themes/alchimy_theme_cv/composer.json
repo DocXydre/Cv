@@ -1,0 +1,13 @@
+{
+  "name": "alchimy/starter",
+  "type": "wordpress-theme",
+  "require": {
+    "timber/timber": "^2"
+  },
+  "license": "MIT",
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}

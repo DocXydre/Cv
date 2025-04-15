@@ -1,0 +1,44 @@
+#footer {
+  margin-top: 200px;
+  font-weight: 400;
+  color: var(--color--light);
+  background-color: var(--color--dark);
+  .container-fluid {
+    padding-top: 35px;
+    padding-bottom: 45px;
+    border-radius: 40px 40px 0 0;
+    a {
+      margin-left: 50px;
+      color: var(--color--light);
+      text-decoration: none;
+      transition: color $transition-duration;
+      &:hover {
+        color: var(--color--secondary);
+      }
+    }
+    .row > div:nth-child(2) {
+      text-align: right;
+      font-size: toRem(13);
+      a {
+        margin-left: 0;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@media (max-width: map.get($grid-breakpoints, "md")) {
+  #footer .row {
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: toRem(50);
+      a {
+        margin-left: 0;
+      }
+    }
+    > div:last-child {
+      text-align: center !important;
+    }
+  }
+}

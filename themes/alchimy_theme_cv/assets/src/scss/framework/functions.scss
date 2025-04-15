@@ -1,0 +1,11 @@
+// Will convert a float in pixel to equivalent float in rem.
+@function toRem($pixelValue) {
+  $remValue: calc($pixelValue / 16) + rem;
+  @return $remValue;
+}
+
+// Will return the value of a breakpoint in pixel (-1 to avoid problems with grid on exact breakpoint value).
+@function getBreakpointValue($breakpointName) {
+  $breakpointValue: calc(map.get($grid-breakpoints, $breakpointName) - 1px);
+  @return $breakpointValue;
+}

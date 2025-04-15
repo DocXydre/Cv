@@ -1,0 +1,30 @@
+#Always include .gitignore
+!.gitignore
+# Exclude node modules folder
+node_modules/
+# Exclude vendor folder
+vendor/
+#Exclude workspaces files
+*.code-workspace
+#Exclude build files - you should be forced to rebuild these to enforce modifications being applied
+assets/dist/
+
+## VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+#MacOS
+@# General
+.DS_Store
+.AppleDouble
+.LSOverride

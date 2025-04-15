@@ -1,0 +1,71 @@
+version: "3.7"
+
+# from https://github.com/docker/awesome-compose/blob/master/official-documentation-samples/wordpress/README.md
+services:
+  staging_db: # @2
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: "--default-authentication-plugin=mysql_native_password"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: unless-stopped
+    env_file:
+      - .env
+    healthcheck:
+      test: '/usr/bin/mysql --user=${DB_USER} --password=${DB_PASSWORD} --execute "SHOW DATABASES;"'
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - internal_network
+
+  staging_wordpress:
+    build: ./
+    volumes:
+      - ./wp_data:/var/www/html
+      - ./plugins:/var/www/html/wp-content/plugins:delegated
+      - ./themes:/var/www/html/wp-content/themes:delegated
+    restart: unless-stopped
+    depends_on:
+      - staging_db
+    labels:
+      - "traefik.enable=true"
+      ## /!\ CAUTION /!\ SET THE HOST BEFORE DEPLOYMENT
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`thomas.alchimy.dev`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls=true"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls.certresolver=le-resolver"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=${COMPOSE_PROJECT_NAME}_auth"
+      ## /!\ CAUTION /!\ THESE ARE DEFAULT CREDENTIALS, PLEASE CHANGE THEM AND GENERATE A BCRYPT ENCRYPTED PASSWORD Saucisse88$
+      ## /!\ CAUTION /!\ characters "$" should be doubled in order to be escaped
+      - "traefik.http.middlewares.${COMPOSE_PROJECT_NAME}_auth.basicauth.users=AlchimyDev:$$2y$$05$$JiNkfRdf4dbIHYCnbTJ56uPg26NowuC/GARAgNtgal7grmFi9o0TG="
+      - "traefik.docker.network=traefik_proxy"
+    networks:
+      - traefik_proxy
+      - internal_network
+    environment:
+      WORDPRESS_DB_HOST: staging_db:3306
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+      WORDPRESS_DB_CHARSET: ${WORDPRESS_DB_CHARSET}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  traefik_proxy:
+    name: traefik_proxy
+    external: true
+  internal_network:
+    name: internal_${COMPOSE_PROJECT_NAME}

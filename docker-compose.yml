@@ -1,0 +1,62 @@
+# from https://github.com/docker/awesome-compose/blob/master/official-documentation-samples/wordpress/README.md
+services:
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+      PMA_PMADB: ${DB_NAME}
+    restart: unless-stopped
+    ports:
+      - 7777:80
+  db:
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: "--default-authentication-plugin=mysql_native_password"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: unless-stopped
+    env_file:
+      - .env
+    healthcheck:
+      test: '/usr/bin/mysql --user=foo --password=foo --execute "SHOW DATABASES;"'
+      # test: "/usr/local/mysql/bin/mysql --user=foo --password=foo --execute \"SHOW DATABASES;\""
+      interval: 10s
+      timeout: 1s
+      retries: 5
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    expose:
+      - 3306
+      - 33060
+
+  wordpress:
+    build: ./
+    volumes:
+      - ./wp_data:/var/www/html
+      - ./plugins:/var/www/html/wp-content/plugins:delegated
+      - ./themes:/var/www/html/wp-content/themes:delegated
+    ports:
+      - 80:80
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+      WORDPRESS_DB_CHARSET: ${WORDPRESS_DB_CHARSET}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+
+volumes:
+  db_data:
+  wp_data:

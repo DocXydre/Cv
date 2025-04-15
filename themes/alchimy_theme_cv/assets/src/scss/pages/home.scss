@@ -1,0 +1,22 @@
+.home {
+  height: 100%;
+  #content {
+    height: 100%;
+  }
+  .main {
+    height: 100%;
+    padding-top: toRem(140);
+    p:first-child {
+      margin-bottom: toRem(40);
+    }
+    p.centre.violet {
+      margin-bottom: toRem(100);
+    }
+  }
+  .nav-icons .icons {
+    margin-top: 400px;
+  }
+  p#breadcrumbs {
+    margin-bottom: 0;
+  }
+}

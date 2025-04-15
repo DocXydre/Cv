@@ -1,0 +1,55 @@
+// SCSS VARIABLES
+//
+// These are useful if needed at preprocessing time.
+// They also won't pollute the css output if you didn't use them.
+
+//GLOBAL INFOS
+$appName: "cv";
+$baseurl: "https://#{$appName}.alchimy.dev/wp-content/themes/alchimy_theme_#{$appName}/";
+
+@if $localMode > 0 {
+  $baseurl: "http://localhost:3004/wp-content/themes/alchimy_theme_#{$appName}/";
+}
+
+//FONTS
+$font-family-sans-serif: "Gilroy", sans-serif;
+
+//GRIDS
+$grid-columns: 16;
+$grid-container-gutter: 1rem;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 375px,
+  md: 744px,
+  lg: 1240px,
+  xl: 1440px,
+);
+
+// TRANSITIONS
+$transition-duration: 0.2s;
+
+//COLORS
+$color--light: #fff;
+$color--dark: #20313d;
+$color--primary: #61ce70;
+$color--secondary: #20313d;
+
+// CSS VARIABLES
+//
+// main benefits :
+//    - can be used in JS
+//    - can be used in media queries
+//    - can be used in pseudo-classes / pseudo-elements
+//    - can be used in animations
+//    - can be used in calc()
+//
+// see https://css-tricks.com/difference-between-types-of-css-variables/ for details
+//
+//
+// As a rule of thumb, use CSS variables by default.
+:root {
+  --color--light: $color--light;
+  --color--dark: $color--light;
+  --color--primary: $color--primary;
+  --color--secondary: $color--secondary;
+}
