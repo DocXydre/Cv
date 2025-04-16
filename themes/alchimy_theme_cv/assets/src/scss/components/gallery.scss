@@ -1,0 +1,24 @@
+// gallery.scss
+
+// Variables
+$gutter: 10px;
+$columns: 3;
+
+// Mixins
+@mixin flex-grid($columns) {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    flex: 1 0 (100% / $columns);
+    padding: $gutter;
+  }
+}
+
+// Styles
+.acf-gallery {
+  @include flex-grid($columns);
+}
