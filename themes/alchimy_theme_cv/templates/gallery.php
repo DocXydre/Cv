@@ -19,7 +19,7 @@ $context['post'] = $post;
 // Récupérer les images du champ de galerie ACF
 if ($photos = $post->get_field('photos')) {
     $context['photos'] = $photos;
-} 
+}
 
 // Rendre le template Twig
 Timber::render('gallery.twig', $context);
