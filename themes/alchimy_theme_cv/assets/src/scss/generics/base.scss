@@ -11,12 +11,19 @@ html {
   scroll-behavior: smooth;
 }
 
+
+
 body {
   font-family: $font-family-sans-serif;
   font-weight: 300;
-  color: var(--color--dark);
+  color: var(--color--primary);
   margin: 0;
-  background-color: #e9e7f4;
+  background-color: #{ $color--light };
+  .content-spacer {
+    height: 100px; 
+    width: 100%;
+    clear: both;
+  }
 }
 
 ////

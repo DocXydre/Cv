@@ -1,5 +1,9 @@
 <?php
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+//Clé d'API (au début du fichier, important)
+define( 'GMAP_API_KEY', 'AIzaSyBAEgvP6uG-mq332hbWXjL1gifMIirvTDM' );
+
+
 
 ////
 //// CUSTOM FUNCTIONS ------------------------------------
@@ -92,7 +96,73 @@ class StarterSite extends Timber\Site
 		parent::__construct();
 	}
 	/** This is where you can register custom post types. */
-	public function register_post_types() {}
+	public function register_post_types() {
+		// Custom Post Type pour les Formations
+		register_post_type('formation', array(
+			'labels' => array(
+				'name' => 'Formations',
+				'singular_name' => 'Formation',
+				'add_new' => 'Ajouter une formation',
+				'add_new_item' => 'Ajouter une nouvelle formation',
+				'edit_item' => 'Modifier la formation',
+				'new_item' => 'Nouvelle formation',
+				'view_item' => 'Voir la formation',
+				'search_items' => 'Rechercher des formations',
+				'not_found' => 'Aucune formation trouvée',
+				'not_found_in_trash' => 'Aucune formation trouvée dans la corbeille',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'menu_icon' => 'dashicons-welcome-learn-more',
+			'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			'rewrite' => array('slug' => 'formations'),
+			'show_in_rest' => true,
+		));
+		
+		// Custom Post Type pour les Expériences Professionnelles
+		register_post_type('experience', array(
+			'labels' => array(
+				'name' => 'Expériences',
+				'singular_name' => 'Expérience',
+				'add_new' => 'Ajouter une expérience',
+				'add_new_item' => 'Ajouter une nouvelle expérience',
+				'edit_item' => 'Modifier l\'expérience',
+				'new_item' => 'Nouvelle expérience',
+				'view_item' => 'Voir l\'expérience',
+				'search_items' => 'Rechercher des expériences',
+				'not_found' => 'Aucune expérience trouvée',
+				'not_found_in_trash' => 'Aucune expérience trouvée dans la corbeille',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'menu_icon' => 'dashicons-businessman',
+			'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			'rewrite' => array('slug' => 'experiences'),
+			'show_in_rest' => true,
+		));
+		
+		// Custom Post Type pour les Projets
+		register_post_type('projet', array(
+			'labels' => array(
+				'name' => 'Projets',
+				'singular_name' => 'Projet',
+				'add_new' => 'Ajouter un projet',
+				'add_new_item' => 'Ajouter un nouveau projet',
+				'edit_item' => 'Modifier le projet',
+				'new_item' => 'Nouveau projet',
+				'view_item' => 'Voir le projet',
+				'search_items' => 'Rechercher des projets',
+				'not_found' => 'Aucun projet trouvé',
+				'not_found_in_trash' => 'Aucun projet trouvé dans la corbeille',
+			),
+			'public' => true,
+			'has_archive' => true,
+			'menu_icon' => 'dashicons-portfolio',
+			'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+			'rewrite' => array('slug' => 'projets'),
+			'show_in_rest' => true,
+		));
+	}
 	/** This is where you can register custom taxonomies. */
 	public function register_taxonomies() {}
 
@@ -167,7 +237,8 @@ class StarterSite extends Timber\Site
 		$twig->addFilter(new Twig\TwigFilter('myfoo', array($this, 'myfoo')));
 		return $twig;
 	}
-}
+
+	}
 
 ////
 //// SITE INITIALIZATION --------------------------------

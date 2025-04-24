@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <article class="projet">
+        <div class="projet__header">
+            <h1 class="projet__title">{{ post.title }}</h1>
+            
+            {% if post.get_field('type') %}
+                <div class="formation__type">{{ post.get_field('type') }}</div>
+            {% endif %}
+            
+            <div class="projet__meta">
+                {% if post.get_field('date_start') %}
+                    <span class="projet__date">
+                        {{ post.get_field('date')|date('m/Y') }}
+                    </span>
+                {% endif %}
+                
+                {% if post.get_field('location') %}
+                    <span class="projet__location">{{ post.get_field('location') }}</span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="projet__content">
+            {{ post.content }}
+        </div>
+
+        {% if post.get_field('link') %}
+            <div class="projet__link">
+                <h3>{{ 'Lien' }}</h3>
+                <a href="{{ post.get_field('link') }}" target="_blank" rel="noopener noreferrer">{{ post.get_field('link') }}</a>
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <article class="formation">
+        <div class="formation__header">
+            <h1 class="formation__title">{{ post.title }}</h1>
+            
+            {% if post.get_field('institution') %}
+                <div class="formation__institution">{{ post.get_field('institution') }}</div>
+            {% endif %}
+            
+            <div class="formation__meta">
+                {% if post.get_field('date_start') %}
+                    <span class="formation__date">
+                        {{ post.get_field('date_start')|date('Y') }}
+                        {% if post.get_field('date_end') %}
+                            - {{ post.get_field('date_end')|date('Y') }}
+                        {% else %}
+                            - {{ 'Present'|trans }}
+                        {% endif %}
+                    </span>
+                {% endif %}
+                
+                {% if post.get_field('location') %}
+                    <span class="formation__location">{{ post.get_field('location') }}</span>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="formation__content">
+            {{ post.content }}
+        </div>
+        
+        {% if post.get_field('diploma') %}
+            <div class="formation__diploma">
+                <h3>{{ 'Diploma'|trans }}</h3>
+                {{ post.get_field('diploma') }}
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}

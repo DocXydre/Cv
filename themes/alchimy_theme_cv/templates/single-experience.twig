@@ -1,0 +1,39 @@
+{# single-experience.twig #}
+{% extends "base.twig" %}
+
+{% block content %}
+    <article class="experience-single">
+        <div class="container">
+            <div class="experience-header">
+                <h1 class="experience-title">{{ post.title }}</h1>
+                
+                {% if post.company %}
+                    <div class="experience-company">
+                        <span>{{ post.company }}</span>
+                    </div>
+                {% endif %}
+                
+                <div class="experience-meta">
+                    {% if post.get_field('date_start') %}
+                        <span class="experience__date">
+                            {{ post.get_field('date_start')|date('Y') }}
+                            {% if post.get_field('date_end') %}
+                                - {{ post.get_field('date_end')|date('Y') }}
+                            {% else %}
+                                - {{ 'Actuellement' }}
+                            {% endif %}
+                        </span>
+                    {% endif %}
+                    
+                    {% if post.location %}
+                        <span class="experience-location">{{ post.location }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="experience-content">
+                {{ post.content }}
+            </div>
+        </div>
+    </article>
+{% endblock %}

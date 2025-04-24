@@ -1,0 +1,14 @@
+{# templates/archive-experience.twig #}
+{% extends 'base.twig' %}
+
+{% block content %}
+  <h1>Expériences</h1>
+  <ul>
+    {% for experience in experiences %}
+      <li>
+        <a href="{{ experience.link }}">{{ experience.title }}</a>
+        <p>{{ experience.meta('date_debut') }} - {{ experience.meta('date_fin') }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

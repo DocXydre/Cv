@@ -1,0 +1,14 @@
+{# templates/archive-formation.twig #}
+{% extends 'base.twig' %}
+
+{% block content %}
+  <h1>Formations</h1>
+  <ul>
+    {% for formation in formations %}
+      <li>
+        <a href="{{ formation.link }}">{{ formation.title }}</a>
+        <p>{{ formation.meta('date_debut') }} - {{ formation.meta('date_fin') }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

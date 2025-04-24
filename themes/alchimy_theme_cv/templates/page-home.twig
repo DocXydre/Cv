@@ -2,17 +2,36 @@
 
 {% block content %}
 <div class="home">
-    {% if is_yoast_active %}
-        <div class="centre">
-            {{function('yoast_breadcrumb', '<p id="breadcrumbs">','</p>')}}
-        </div>
-    {% endif %}
-    <div class="container-fluid main">
-        <div class="row">
-            <div class="col-16 col-md-6 offset-md-5">
-                <p class="title title-size-3">{{__("main_text", "Portfolio")}}</p>
+            <div class="experience-content">
+                {{ post.content }}
             </div>
-        </div>
-    </div>
+
+    {# Sections ajoutées #}
+    <section>
+        <h2>Dernières Formations</h2>
+        <ul>
+            {% for formation in formations %}
+                <li><a href="{{ formation.link }}">{{ formation.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Dernières Expériences</h2>
+        <ul>
+            {% for experience in experiences %}
+                <li><a href="{{ experience.link }}">{{ experience.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Derniers Projets</h2>
+        <ul>
+            {% for projet in projets %}
+                <li><a href="{{ projet.link }}">{{ projet.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
 </div>
 {% endblock %}

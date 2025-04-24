@@ -18,7 +18,7 @@ const initBurgerMenuButton = () => {
       e.preventDefault();
       let body = document.querySelector("body");
       body.classList.toggle("menuopen");
-      const menuResponsive = document.getElementById("mobilemenu");
+      const menuResponsive = document.getElementById("mobileMenu");
       menuResponsive.classList.toggle("open");
     });
   }
@@ -31,7 +31,7 @@ const initMenuCloseButton = () => {
       e.preventDefault();
       const body = document.querySelector("body");
       body.classList.toggle("menuopen");
-      const menuResponsive = document.querySelector("#mobilemenu");
+      const menuResponsive = document.querySelector("#mobileMenu");
       menuResponsive.classList.toggle("open");
     });
   }

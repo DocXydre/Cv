@@ -1,0 +1,14 @@
+{# templates/archive-projet.twig #}
+{% extends 'base.twig' %}
+
+{% block content %}
+    <h1>Projets</h1>
+    <ul>
+        {% for projet in projets %}
+            <li>
+                <a href="{{ projet.link }}">{{ projet.title }}</a>
+                <p>{{ projet.meta('date') }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

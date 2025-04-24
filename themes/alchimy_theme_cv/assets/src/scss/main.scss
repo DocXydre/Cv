@@ -4,19 +4,19 @@
 /// CONFIGURATION
 ///
 
-$localMode: 0; // set to 1 to switch redirect to localhost
-
-////
-//// VENDORS
-////
-@import "vendors/alchimy-grid.scss";
-@import "vendors/normalize.scss";
+$localMode:0; // set to 1 to switch redirect to localhost
 
 ////
 //// FRAMEWORK
 ////
 @import "framework/functions.scss";
 @import "framework/variables.scss";
+
+////
+//// VENDORS
+////
+@import "vendors/alchimy-grid.scss";
+@import "vendors/normalize.scss";
 
 ////
 //// GENERIC STYLES
@@ -29,7 +29,6 @@ $localMode: 0; // set to 1 to switch redirect to localhost
 ////
 @import "components/button.scss";
 @import "components/nav.scss";
-@import "components/gallery.scss";
 
 ////
 //// PAGES / BLOCKS
