@@ -2,7 +2,6 @@ header.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: toRem(80); // Réduit la hauteur
   position: fixed;
   width: 100%;
   z-index: 10;
@@ -73,14 +72,17 @@ header.header {
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center; // Centrer horizontalement
   
   & > div {
     height: 100%;
+    display: flex;
+    align-items: center; // Centrer verticalement
 
     & > ul {
       display: flex;
       flex-direction: row;
-      gap: toRem(5);
+      gap: toRem(15); // Augmenter l'espacement entre les éléments
       list-style-type: none;
       margin: 0;
 
@@ -90,27 +92,51 @@ header.header {
         position: relative;
         
         a {
-          font-size: toRem(14);
-          font-weight: 500;
+          font-size: toRem(16); // Augmenter la taille de police
+          font-weight: 600; // Police plus grasse
           text-decoration: none;
           color: var(--color--light);
-          background-color: rgba(0, 0, 0, 0.2);
-          padding: toRem(8) toRem(15);
+          background-color: var(--color--secondary); // Couleur de fond bleu foncé
+          padding: toRem(12) toRem(20); // Augmenter le padding pour des boutons plus grands
           border-radius: toRem(15);
-          transition: background-color 0.2s ease;
+          transition: all 0.3s ease; // Transition pour tous les changements
+          border: 2px solid transparent; // Bordure transparente par défaut
           
           &:hover {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: var(--color--secondary); // Maintenir la même couleur de fond
+            border: 2px solid var(--color--primary); // Ajouter une bordure noire au survol
+            transform: scale(1.05); // Légèrement agrandir au survol
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Ajouter une ombre subtile
           }
         }
         
         &.current-menu-item a {
-          background-color: rgba(0, 0, 0, 0.4);
-          font-weight: 600;
+          background-color: var(--color--secondary);
+          font-weight: 700;
+          border: 2px solid var(--color--primary); // Page active avec bordure noire
         }
       }
     }
   }
+}
+
+.header-nav-container {
+  display: flex;
+  align-items: center;
+  gap: toRem(15); // Espacement entre le menu et le bouton de recherche
+}
+
+#search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color--secondary);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+  
 }
 
 .searchbar {

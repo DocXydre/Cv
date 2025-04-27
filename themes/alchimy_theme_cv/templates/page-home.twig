@@ -3,20 +3,21 @@
 {% block content %}
 <div class="bento-container">
     <!-- Profile Card -->
-    <div class="bento-card bento-card--medium">
+    <div class="bento-card bento-card--medium bento-card--blue">
         <div class="bento-card__header">
             <h2>Profil</h2>
         </div>
-        <div class="profile-card">
-            <div class="profile-card__header">
-                <img class="profile-card__avatar" src="{{theme.link}}/assets/src/img/photo-profile.jpg" alt="Thomas MATHIS" />
-                <div class="profile-card__name">Je m'appelle Thomas MATHIS</div>
-                <div class="profile-card__title">Développeur Web et Designer d'Interfaces</div>
+        <div class="profile-card profile-card--horizontal">
+            {% if post.meta('pp') %}
+                <div class="profile-card__image">
+                    <img src="{{ Image(post.meta('pp')).src }}" alt="Photo de profil" class="profile-card__avatar">
+                </div>
+            {% endif %}
+            <div class="profile-card__content">
+                <div class="profile-card__description">
+                    {{ post.meta('description') }}
+                </div>
             </div>
-            <div class="profile-card__description">
-                {{ post.content }}
-            </div>
-            <a href="#" class="profile-card__link">En savoir plus</a>
         </div>
     </div>
 
@@ -54,6 +55,7 @@
                     {{ formation.meta('date_start')|date('Y') }}
                     {% if formation.meta('date_end') %}
                         - {{ formation.meta('date_end')|date('Y') }}
+
                     {% else %}
                         - Actuellement
                     {% endif %}

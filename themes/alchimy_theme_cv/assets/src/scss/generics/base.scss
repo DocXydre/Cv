@@ -18,7 +18,7 @@ body {
   font-weight: 300;
   color: var(--color--primary);
   margin: 0;
-  background-color: #{ $color--light };
+  background-color: var(--color--light);
   .content-spacer {
     height: 100px; 
     width: 100%;
