@@ -1,0 +1,243 @@
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: toRem(20);
+  padding: toRem(20);
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: toRem(140); // Espace pour le header fixe et les vagues
+}
+
+.bento-card {
+  background-color: var(--color--bento-blue-light);
+  border-radius: toRem(20);
+  padding: toRem(20);
+  color: var(--color--bento-text-light);
+  position: relative;
+  overflow: hidden;
+  
+  &--dark {
+    background-color: var(--color--bento-blue-dark);
+  }
+  
+  &--large {
+    grid-column: span 8;
+    
+    @media (max-width: map.get($grid-breakpoints, "md")) {
+      grid-column: 1 / -1;
+    }
+  }
+  
+  &--medium {
+    grid-column: span 4;
+    
+    @media (max-width: map.get($grid-breakpoints, "md")) {
+      grid-column: 1 / -1;
+    }
+  }
+  
+  &--full {
+    grid-column: 1 / -1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: toRem(15);
+    
+    h2 {
+      font-size: toRem(20);
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+  
+  &__content {
+    height: 100%;
+  }
+  
+  &__tag {
+    display: inline-block;
+    background-color: var(--color--bento-card-tag);
+    border-radius: toRem(15);
+    padding: toRem(5) toRem(10);
+    font-size: toRem(12);
+    font-weight: 600;
+    margin-right: toRem(5);
+    margin-bottom: toRem(5);
+  }
+  
+  &__add-button {
+    position: absolute;
+    bottom: toRem(15);
+    right: toRem(15);
+    width: toRem(30);
+    height: toRem(30);
+    background-color: var(--color--bento-card-tag);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: toRem(20);
+    text-decoration: none;
+    
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+  }
+}
+
+// Profil card
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  
+  &__header {
+    margin-bottom: toRem(15);
+  }
+  
+  &__avatar {
+    width: toRem(120);
+    height: toRem(120);
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: toRem(15);
+  }
+  
+  &__name {
+    font-size: toRem(24);
+    font-weight: 700;
+    margin-bottom: toRem(5);
+  }
+  
+  &__title {
+    font-size: toRem(16);
+    font-weight: 400;
+    margin-bottom: toRem(15);
+  }
+  
+  &__description {
+    margin-bottom: toRem(20);
+  }
+  
+  &__link {
+    color: var(--color--bento-text-light);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+}
+
+// Compétences
+.competences-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: toRem(10);
+  
+  &__item {
+    background-color: var(--color--bento-card-tag);
+    border-radius: toRem(15);
+    padding: toRem(8) toRem(15);
+    font-size: toRem(14);
+    font-weight: 500;
+  }
+}
+
+// Cards formation et expérience
+.card-list {
+  &__item {
+    background-color: var(--color--bento-card-tag);
+    border-radius: toRem(15);
+    padding: toRem(15);
+    margin-bottom: toRem(15);
+    position: relative;
+    
+    &-title {
+      font-size: toRem(16);
+      font-weight: 600;
+      margin-bottom: toRem(5);
+    }
+    
+    &-subtitle {
+      font-size: toRem(14);
+      margin-bottom: toRem(5);
+    }
+    
+    &-date {
+      font-size: toRem(12);
+      opacity: 0.8;
+    }
+  }
+}
+
+// Projets
+.projects-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: toRem(20);
+  padding: toRem(10) 0;
+  
+  &::-webkit-scrollbar {
+    height: toRem(8);
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: toRem(4);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--color--bento-card-tag);
+    border-radius: toRem(4);
+  }
+  
+  &__item {
+    flex: 0 0 toRem(280);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: toRem(15);
+    padding: toRem(15);
+    
+    &-header {
+      margin-bottom: toRem(15);
+    }
+    
+    &-title {
+      font-size: toRem(18);
+      font-weight: 600;
+      margin-bottom: toRem(5);
+    }
+    
+    &-date {
+      font-size: toRem(12);
+      opacity: 0.8;
+    }
+    
+    &-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: toRem(5);
+      margin-bottom: toRem(10);
+    }
+  }
+}
+
+// Bouton découvrir plus
+.discover-more {
+  display: block;
+  background-color: var(--color--bento-card-tag);
+  color: white;
+  text-align: center;
+  padding: toRem(10) toRem(20);
+  border-radius: toRem(20);
+  text-decoration: none;
+  font-weight: 500;
+  margin: toRem(20) auto;
+  width: fit-content;
+  
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+  }
+}

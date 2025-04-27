@@ -48,8 +48,15 @@ $color--secondary: #1b1b5d;
 //
 // As a rule of thumb, use CSS variables by default.
 :root {
+  // Couleurs existantes
   --color--light: #ffffff;
   --color--dark: #0171ff;
   --color--primary: #000000;
   --color--secondary: #1b1b5d;
+  
+  // Nouvelles couleurs pour le design bento
+  --color--bento-blue-light: #1b8eff;
+  --color--bento-blue-dark: #131045;
+  --color--bento-card-tag: #2589e4;
+  --color--bento-text-light: #ffffff;
 }

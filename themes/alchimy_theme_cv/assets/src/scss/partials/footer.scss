@@ -102,3 +102,50 @@
     top: -55px; 
   }
 }
+
+.footer-social {
+  display: flex;
+  gap: toRem(15);
+  margin-bottom: toRem(20);
+  
+  &__link {
+    width: toRem(40);
+    height: toRem(40);
+    background-color: var(--color--bento-blue-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg {
+      width: toRem(20);
+      height: toRem(20);
+      fill: white;
+    }
+    
+    &:hover {
+      transform: scale(1.1);
+      transition: transform 0.2s ease;
+    }
+  }
+}
+
+.footer-copyright {
+  text-align: center;
+  font-size: toRem(14);
+  opacity: 0.8;
+}
+
+.mentions-legales {
+  display: inline-block;
+  padding: toRem(8) toRem(15);
+  background-color: var(--color--bento-blue-dark);
+  color: white;
+  border-radius: toRem(15);
+  text-decoration: none;
+  font-size: toRem(14);
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}

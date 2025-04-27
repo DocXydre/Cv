@@ -1,37 +1,117 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="home">
-            <div class="experience-content">
+<div class="bento-container">
+    <!-- Profile Card -->
+    <div class="bento-card bento-card--medium">
+        <div class="bento-card__header">
+            <h2>Profil</h2>
+        </div>
+        <div class="profile-card">
+            <div class="profile-card__header">
+                <img class="profile-card__avatar" src="{{theme.link}}/assets/src/img/photo-profile.jpg" alt="Thomas MATHIS" />
+                <div class="profile-card__name">Je m'appelle Thomas MATHIS</div>
+                <div class="profile-card__title">Développeur Web et Designer d'Interfaces</div>
+            </div>
+            <div class="profile-card__description">
                 {{ post.content }}
             </div>
+            <a href="#" class="profile-card__link">En savoir plus</a>
+        </div>
+    </div>
 
-    {# Sections ajoutées #}
-    <section>
-        <h2>Dernières Formations</h2>
-        <ul>
+    <!-- Compétences Card -->
+    <div class="bento-card bento-card--medium bento-card--dark">
+        <div class="bento-card__header">
+            <h2>Compétences</h2>
+        </div>
+        <div class="competences-grid">
+            <div class="competences-grid__item">Communication</div>
+            <div class="competences-grid__item">Gestion de projet</div>
+            <div class="competences-grid__item">Back-end</div>
+            <div class="competences-grid__item">Expérience utilisateur</div>
+            <div class="competences-grid__item">Interface utilisateur</div>
+            <div class="competences-grid__item">Front-end</div>
+            <div class="competences-grid__item">Gestion d'erreurs</div>
+            <div class="competences-grid__item">WordPress</div>
+            <div class="competences-grid__item">Autonomie</div>
+            <div class="competences-grid__item">Base de données</div>
+            <div class="competences-grid__item">etc...</div>
+        </div>
+    </div>
+
+    <!-- Formations Card -->
+    <div class="bento-card bento-card--medium bento-card--dark">
+        <div class="bento-card__header">
+            <h2>Formations</h2>
+        </div>
+        <div class="card-list">
             {% for formation in formations %}
-                <li><a href="{{ formation.link }}">{{ formation.title }}</a></li>
+            <div class="card-list__item">
+                <div class="card-list__item-title">{{ formation.title }}</div>
+                <div class="card-list__item-subtitle">{{ formation.meta('institution') }}</div>
+                <div class="card-list__item-date">
+                    {{ formation.meta('date_start')|date('Y') }}
+                    {% if formation.meta('date_end') %}
+                        - {{ formation.meta('date_end')|date('Y') }}
+                    {% else %}
+                        - Actuellement
+                    {% endif %}
+                </div>
+                <a href="{{ formation.link }}" class="bento-card__add-button">+</a>
+            </div>
             {% endfor %}
-        </ul>
-    </section>
+        </div>
+        <a href="/formations/" class="discover-more">Découvrir plus</a>
+    </div>
 
-    <section>
-        <h2>Dernières Expériences</h2>
-        <ul>
+    <!-- Expériences Card -->
+    <div class="bento-card bento-card--medium">
+        <div class="bento-card__header">
+            <h2>Expérience Professionnelle</h2>
+        </div>
+        <div class="card-list">
             {% for experience in experiences %}
-                <li><a href="{{ experience.link }}">{{ experience.title }}</a></li>
+            <div class="card-list__item">
+                <div class="card-list__item-title">{{ experience.title }}</div>
+                <div class="card-list__item-subtitle">{{ experience.meta('company') }}</div>
+                <div class="card-list__item-date">
+                    {{ experience.meta('date_start')|date('Y') }}
+                    {% if experience.meta('date_end') %}
+                        - {{ experience.meta('date_end')|date('Y') }}
+                    {% else %}
+                        - Actuellement
+                    {% endif %}
+                </div>
+                <a href="{{ experience.link }}" class="bento-card__add-button">+</a>
+            </div>
             {% endfor %}
-        </ul>
-    </section>
+        </div>
+        <a href="/experiences/" class="discover-more">Découvrir plus</a>
+    </div>
 
-    <section>
-        <h2>Derniers Projets</h2>
-        <ul>
+    <!-- Projets Card -->
+    <div class="bento-card bento-card--full bento-card--dark">
+        <div class="bento-card__header">
+            <h2>Projets Réalisés</h2>
+        </div>
+        <div class="projects-slider">
             {% for projet in projets %}
-                <li><a href="{{ projet.link }}">{{ projet.title }}</a></li>
+            <div class="projects-slider__item">
+                <div class="projects-slider__item-header">
+                    <div class="projects-slider__item-title">{{ projet.title }}</div>
+                    <div class="projects-slider__item-date">{{ projet.meta('date')|date('m/Y') }}</div>
+                </div>
+                <div class="projects-slider__item-tags">
+                    <span class="bento-card__tag">Symfony</span>
+                    <span class="bento-card__tag">React</span>
+                    <span class="bento-card__tag">HTML</span>
+                </div>
+                <a href="{{ projet.link }}" class="bento-card__add-button">+</a>
+            </div>
             {% endfor %}
-        </ul>
-    </section>
+        </div>
+        <a href="/projets/" class="discover-more">Découvrir plus</a>
+    </div>
 </div>
 {% endblock %}
