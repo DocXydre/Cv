@@ -1,13 +1,4 @@
-.bento-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: toRem(20);
-  padding: toRem(20);
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: toRem(140); // Espace pour le header fixe et les vagues
-}
-
+// Bento cards
 .bento-card {
   background-color: var(--color--dark);
   border-radius: toRem(20);
@@ -15,35 +6,19 @@
   color: var(--color--light);
   position: relative;
   overflow: hidden;
+  height: 100%;
+  margin-bottom: toRem(20);
   
+
   &--dark {
     background-color: var(--color--secondary);
   }
-  
-  &--large {
-    grid-column: span 8;
-    
-    @media (max-width: map.get($grid-breakpoints, "md")) {
-      grid-column: 1 / -1;
-    }
-  }
-  
-  &--medium {
-    grid-column: span 4;
-    
-    @media (max-width: map.get($grid-breakpoints, "md")) {
-      grid-column: 1 / -1;
-    }
-  }
-  
-  &--full {
-    grid-column: 1 / -1;
-  }
 
+  
+  
   &__header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: toRem(15);
     
     h2 {
@@ -98,51 +73,15 @@
 // Profil card
 .profile-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: wrap;
+  align-items: center;
+  gap: toRem(30);
+  width: toRem(100%);
+  padding: toRem(20);
   
-  &__header {
-    margin-bottom: toRem(15);
-  }
-  
-  &__avatar {
-    width: toRem(120);
-    height: toRem(120);
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: toRem(15);
-  }
-  
-  &__name {
-    font-size: toRem(24);
-    font-weight: 700;
-    margin-bottom: toRem(5);
-  }
-  
-  &__title {
-    font-size: toRem(16);
-    font-weight: 400;
-    margin-bottom: toRem(15);
-  }
   
   &__description {
     margin-bottom: toRem(20);
-  }
-  
-  &__link {
-    color: var(--color--light);
-    text-decoration: underline;
-    font-weight: 500;
-  }
-  
-  &--horizontal {
-    flex-direction: row;
-    gap: toRem(20);
-    
-    @media (max-width: map.get($grid-breakpoints, "sm")) {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
   }
   
   &__image {
@@ -167,15 +106,14 @@
     p {
       margin-bottom: toRem(15);
     }
-  }
-  
-  &__link {
-    color: inherit;
-    font-weight: 700;
-    text-decoration: underline;
-    
-    &:hover {
-      opacity: 0.8;
+
+    @media screen and (max-width: 768px) {
+      font-size: toRem(14);
+      line-height: 1.4;
+      margin-bottom: toRem(10);
+      p {
+        margin-bottom: toRem(10);
+      }      
     }
   }
 }
@@ -197,6 +135,7 @@
 
 // Cards formation et expérience
 .card-list {
+
   &__item {
     background-color: var(--color--dark);
     border-radius: toRem(15);
@@ -218,6 +157,10 @@
     &-date {
       font-size: toRem(12);
       opacity: 0.8;
+    }
+
+    &-dark {
+      background-color: var(--color--secondary);
     }
   }
 }
@@ -245,7 +188,8 @@
   
   &__item {
     flex: 0 0 toRem(280);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: white ;
+    color: black;
     border-radius: toRem(15);
     padding: toRem(15);
     
@@ -285,7 +229,11 @@
   font-weight: 500;
   margin: toRem(20) auto;
   width: fit-content;
-  
+
+  &__dark {
+    background-color: var(--color--secondary);
+  }
+
   &:hover {
     transform: translateY(-2px);
     transition: transform 0.2s ease;

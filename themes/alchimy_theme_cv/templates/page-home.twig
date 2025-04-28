@@ -1,28 +1,30 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="bento-container">
-    <!-- Profile Card -->
-    <div class="bento-card bento-card--medium bento-card--blue">
-        <div class="bento-card__header">
-            <h2>Profil</h2>
-        </div>
-        <div class="profile-card profile-card--horizontal">
-            {% if post.meta('pp') %}
-                <div class="profile-card__image">
-                    <img src="{{ Image(post.meta('pp')).src }}" alt="Photo de profil" class="profile-card__avatar">
-                </div>
-            {% endif %}
-            <div class="profile-card__content">
+<div class="container-fluid">
+  <div class="row row--equal-height">
+    <!-- Carte profil -->
+    <div class="col-2 ">
+        <div class="bento-card">
+            <div class="bento-card__header">
+                <h2>Profil</h2>
+            </div>
+            <div class="profile-card">
+                {% if post.meta('pp') %}
+                    <div class="profile-card__image">
+                        <img src="{{ Image(post.meta('pp')).src }}" alt="Photo de profil" class="profile-card__avatar">
+                    </div>
+                {% endif %}
                 <div class="profile-card__description">
                     {{ post.meta('description') }}
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Compétences Card -->
-    <div class="bento-card bento-card--medium bento-card--dark">
+    
+    <!-- Carte compétences -->
+    <div class="col-12 col-lg-6"> 
+      <div class="bento-card bento-card--dark">
         <div class="bento-card__header">
             <h2>Compétences</h2>
         </div>
@@ -37,14 +39,19 @@
             <div class="competences-grid__item">WordPress</div>
             <div class="competences-grid__item">Autonomie</div>
             <div class="competences-grid__item">Base de données</div>
+
             <div class="competences-grid__item">etc...</div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Formations Card -->
-    <div class="bento-card bento-card--medium bento-card--dark">
+  <div class="row row--equal-height">
+    <!-- Formations -->
+    <div class="col-12 col-md-8">
+      <div class="bento-card bento-card--dark">
         <div class="bento-card__header">
-            <h2>Formations</h2>
+          <h2>Formations</h2>
         </div>
         <div class="card-list">
             {% for formation in formations %}
@@ -65,16 +72,18 @@
             {% endfor %}
         </div>
         <a href="/formations/" class="discover-more">Découvrir plus</a>
+      </div>
     </div>
-
-    <!-- Expériences Card -->
-    <div class="bento-card bento-card--medium">
+    
+    <!-- Expérience  -->
+    <div class="col-12 col-md-8">
+      <div class="bento-card bento-card--light">
         <div class="bento-card__header">
-            <h2>Expérience Professionnelle</h2>
+          <h2>Expérience Professionnelle</h2>
         </div>
         <div class="card-list">
             {% for experience in experiences %}
-            <div class="card-list__item">
+            <div class="card-list__item card-list__item-dark">
                 <div class="card-list__item-title">{{ experience.title }}</div>
                 <div class="card-list__item-subtitle">{{ experience.meta('company') }}</div>
                 <div class="card-list__item-date">
@@ -89,13 +98,17 @@
             </div>
             {% endfor %}
         </div>
-        <a href="/experiences/" class="discover-more">Découvrir plus</a>
+        <a href="/experiences/" class="discover-more discover-more__dark">Découvrir plus</a>
+      </div>
     </div>
-
-    <!-- Projets Card -->
-    <div class="bento-card bento-card--full bento-card--dark">
+  </div>
+  
+  <div class="row row--equal-height">
+    <!-- Projets -->
+    <div class="col-20">
+      <div class="bento-card bento-card--dark">
         <div class="bento-card__header">
-            <h2>Projets Réalisés</h2>
+          <h2>Projets Réalisés</h2>
         </div>
         <div class="projects-slider">
             {% for projet in projets %}
@@ -108,12 +121,15 @@
                     <span class="bento-card__tag">Symfony</span>
                     <span class="bento-card__tag">React</span>
                     <span class="bento-card__tag">HTML</span>
+                    <a href="{{ projet.link }}" class="bento-card__add-button">+</a>
                 </div>
-                <a href="{{ projet.link }}" class="bento-card__add-button">+</a>
+                
             </div>
             {% endfor %}
         </div>
         <a href="/projets/" class="discover-more">Découvrir plus</a>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

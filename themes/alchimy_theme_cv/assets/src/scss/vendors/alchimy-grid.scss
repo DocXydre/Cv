@@ -6,7 +6,7 @@
 
 @use "sass:math";
 
-$grid-columns: 12 !default;
+$grid-columns: 1 !default;
 $grid-gutter: 20px !default;
 $grid-container-max-width: 1470px !default;
 $grid-container-gutter: 40px !default;
@@ -14,7 +14,7 @@ $grid-container-gutter: 40px !default;
 $grid-breakpoints: (
   sm: 600px,
   md: 900px,
-  lg: 1200px,
+  lg: 1240px,
   xl: 1800px,
 ) !default;
 
@@ -48,6 +48,22 @@ $grid-breakpoints: (
 
     > * {
       font-size: 1rem;
+    }
+  }
+
+  // classe pour les rangées à hauteur égale
+  .row--equal-height {
+    display: flex;
+    flex-wrap: wrap;
+    
+    > [class^="col-"],
+    > [class*=" col-"] {
+      display: flex;
+      flex-direction: column;
+      
+      > * {
+        flex: 1;
+      }
     }
   }
 
