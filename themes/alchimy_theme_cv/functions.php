@@ -164,7 +164,45 @@ class StarterSite extends Timber\Site
 		));
 	}
 	/** This is where you can register custom taxonomies. */
-	public function register_taxonomies() {}
+	public function register_taxonomies() {
+		// Custom Taxonomy pour les Compétences
+		register_taxonomy('competence', array('formation', 'projet', 'experience'), array(
+			'labels' => array(
+				'name' => 'Compétences',
+				'singular_name' => 'Compétence',
+				'add_new_item' => 'Ajouter une nouvelle compétence',
+				'edit_item' => 'Modifier la compétence',
+				'new_item' => 'Nouvelle compétence',
+				'view_item' => 'Voir la compétence',
+				'search_items' => 'Rechercher des compétences',
+				'not_found' => 'Aucune compétence trouvée',
+				'not_found_in_trash' => 'Aucune compétence trouvée dans la corbeille',
+			),
+			'hierarchical' => true,
+			'show_admin_column' => true,
+			'rewrite' => array('slug' => 'competences'),
+			'show_in_rest' => true,
+		));
+
+		// Custom Taxonomy pour les types de Projets
+		register_taxonomy('type_projet', array('projet'), array(
+			'labels' => array(
+				'name' => 'Types de Projets',
+				'singular_name' => 'Type de Projet',
+				'add_new_item' => 'Ajouter un nouveau type de projet',
+				'edit_item' => 'Modifier le type de projet',	
+				'new_item' => 'Nouveau type de projet',
+				'view_item' => 'Voir le type de projet',
+				'search_items' => 'Rechercher des types de projets',
+				'not_found' => 'Aucun type de projet trouvé',
+				'not_found_in_trash' => 'Aucun type de projet trouvé dans la corbeille',
+			),
+			'hierarchical' => true,
+			'show_admin_column' => true,
+			'rewrite' => array('slug' => 'types-de-projets'),
+			'show_in_rest' => true,
+		));
+	}
 
 	/** This is where you add some context
 	 *

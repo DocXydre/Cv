@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="row row--equal-height">
     <!-- Carte profil -->
-    <div class="col-2 ">
+    <div class="col-12 col-md-10">
         <div class="bento-card">
             <div class="bento-card__header">
                 <h2>Profil</h2>
@@ -21,26 +21,19 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Carte compétences -->
-    <div class="col-12 col-lg-6"> 
+    <div class="col-12 col-md-6">
       <div class="bento-card bento-card--dark">
         <div class="bento-card__header">
             <h2>Compétences</h2>
         </div>
         <div class="competences-grid">
-            <div class="competences-grid__item">Communication</div>
-            <div class="competences-grid__item">Gestion de projet</div>
-            <div class="competences-grid__item">Back-end</div>
-            <div class="competences-grid__item">Expérience utilisateur</div>
-            <div class="competences-grid__item">Interface utilisateur</div>
-            <div class="competences-grid__item">Front-end</div>
-            <div class="competences-grid__item">Gestion d'erreurs</div>
-            <div class="competences-grid__item">WordPress</div>
-            <div class="competences-grid__item">Autonomie</div>
-            <div class="competences-grid__item">Base de données</div>
-
-            <div class="competences-grid__item">etc...</div>
+            {% for competence in competences %}
+                <div class="competences-grid__item">
+                    {{ competence.name }}
+                    </div>
+            {% endfor %}
         </div>
       </div>
     </div>
@@ -62,7 +55,6 @@
                     {{ formation.meta('date_start')|date('Y') }}
                     {% if formation.meta('date_end') %}
                         - {{ formation.meta('date_end')|date('Y') }}
-
                     {% else %}
                         - Actuellement
                     {% endif %}
@@ -74,8 +66,8 @@
         <a href="/formations/" class="discover-more">Découvrir plus</a>
       </div>
     </div>
-    
-    <!-- Expérience  -->
+
+    <!-- Expérience -->
     <div class="col-12 col-md-8">
       <div class="bento-card bento-card--light">
         <div class="bento-card__header">
@@ -101,9 +93,7 @@
         <a href="/experiences/" class="discover-more discover-more__dark">Découvrir plus</a>
       </div>
     </div>
-  </div>
-  
-  <div class="row row--equal-height">
+
     <!-- Projets -->
     <div class="col-20">
       <div class="bento-card bento-card--dark">
@@ -123,11 +113,10 @@
                     <span class="bento-card__tag">HTML</span>
                     <a href="{{ projet.link }}" class="bento-card__add-button">+</a>
                 </div>
-                
             </div>
             {% endfor %}
         </div>
-        <a href="/projets/" class="discover-more">Découvrir plus</a>
+        <a href="{{site.link}}/projets/" class="discover-more">Découvrir plus</a>
       </div>
     </div>
   </div>

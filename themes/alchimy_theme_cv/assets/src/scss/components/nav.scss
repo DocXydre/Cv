@@ -28,7 +28,7 @@ header.header {
 
 .header-waves-container {
   position: absolute;
-  top: toRem(110);
+  top: toRem(120);
   left: 0;
   width: 100%;
   height: 45px; 
@@ -72,17 +72,16 @@ header.header {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; // Centrer horizontalement
   
   & > div {
     height: 100%;
     display: flex;
-    align-items: center; // Centrer verticalement
+    align-items: center;
 
     & > ul {
       display: flex;
       flex-direction: row;
-      gap: toRem(15); // Augmenter l'espacement entre les éléments
+      gap: toRem(15);
       list-style-type: none;
       margin: 0;
 
@@ -92,28 +91,28 @@ header.header {
         position: relative;
         
         a {
-          font-size: toRem(16); // Augmenter la taille de police
-          font-weight: 600; // Police plus grasse
+          font-size: toRem(16); 
+          font-weight: 600; 
           text-decoration: none;
           color: var(--color--light);
-          background-color: var(--color--secondary); // Couleur de fond bleu foncé
-          padding: toRem(12) toRem(20); // Augmenter le padding pour des boutons plus grands
+          background-color: var(--color--secondary); 
+          padding: toRem(12) toRem(20); 
           border-radius: toRem(15);
-          transition: all 0.3s ease; // Transition pour tous les changements
-          border: 2px solid transparent; // Bordure transparente par défaut
+          transition: all 0.3s ease; 
+          border: 2px solid transparent; 
           
           &:hover {
-            background-color: var(--color--secondary); // Maintenir la même couleur de fond
-            border: 2px solid var(--color--primary); // Ajouter une bordure noire au survol
-            transform: scale(1.05); // Légèrement agrandir au survol
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Ajouter une ombre subtile
+            background-color: var(--color--secondary); 
+            border: 2px solid var(--color--primary); 
+            transform: scale(1.05); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
           }
         }
         
         &.current-menu-item a {
           background-color: var(--color--secondary);
           font-weight: 700;
-          border: 2px solid var(--color--primary); // Page active avec bordure noire
+          border: 2px solid var(--color--primary); 
         }
       }
     }
@@ -123,7 +122,7 @@ header.header {
 .header-nav-container {
   display: flex;
   align-items: center;
-  gap: toRem(15); // Espacement entre le menu et le bouton de recherche
+  gap: toRem(15); 
 }
 
 #search {
@@ -131,6 +130,7 @@ header.header {
   align-items: center;
   justify-content: center;
   color: var(--color--secondary);
+  margin-left: toRem(15); 
   transition: transform 0.3s ease;
   
   &:hover {
@@ -279,7 +279,7 @@ p#breadcrumbs {
     ul {
       list-style-type: none;
       margin: 0;
-      padding-left: 0;
+
       &:first-child {
         margin-bottom: toRem(36);
       }
@@ -458,6 +458,7 @@ p#breadcrumbs {
       }
       #burger {
         display: initial; 
+        margin-right: toRem(10); // Espace entre le burger et la loupe
       }
     }
   }

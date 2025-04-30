@@ -16,7 +16,7 @@
                         {% if post.get_field('date_end') %}
                             - {{ post.get_field('date_end')|date('Y') }}
                         {% else %}
-                            - {{ 'Present'|trans }}
+                            - {{ 'Present'}}
                         {% endif %}
                     </span>
                 {% endif %}
@@ -33,7 +33,7 @@
         
         {% if post.get_field('diploma') %}
             <div class="formation__diploma">
-                <h3>{{ 'Diploma'|trans }}</h3>
+                <h3>{{ 'Diploma'}}</h3>
                 {{ post.get_field('diploma') }}
             </div>
         {% endif %}

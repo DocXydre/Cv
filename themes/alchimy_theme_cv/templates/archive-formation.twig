@@ -2,13 +2,42 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-  <h1>Formations</h1>
-  <ul>
+<div class="container-fluid">
+  
+  <div class="row row--equal-height">
     {% for formation in formations %}
-      <li>
-        <a href="{{ formation.link }}">{{ formation.title }}</a>
-        <p>{{ formation.meta('date_debut') }} - {{ formation.meta('date_fin') }}</p>
-      </li>
+      <div class="col-16">
+        <div class="bento-card">
+          <div class="bento-card__header">
+            <h2>{{ formation.title }}</h2>
+          </div>
+          <div class="card-list__item">
+            <div class="card-list__item-subtitle">
+              {% if formation.meta('institution') %}
+                <span class="institution">{{ formation.meta('institution') }}</span>
+              {% endif %}
+            </div>
+            <div class="card-list__item-date">
+              {% if formation.meta('date_start') %}
+                {{ formation.meta('date_start')|date('Y') }}
+                {% if formation.meta('date_end') %}
+                  - {{ formation.meta('date_end')|date('Y') }}
+                {% else %}
+                  - Actuellement
+                {% endif %}
+              {% endif %}
+            </div>
+            <div class="card-list__item-description">
+              {% if formation.content %}
+                {{ formation.content|striptags|slice(0, 450) }}{% if formation.content|striptags|length > 450 %}...{% endif %}
+              {% endif %}
+            </div>
+            <a href="{{ formation.link }}" class="discover-more discover-more__dark">Découvrir plus</a>
+          </div>
+        </div>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
+</div>
+
 {% endblock %}

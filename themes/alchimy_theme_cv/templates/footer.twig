@@ -1,15 +1,27 @@
-<div class="container-fluid bgdark">
+<div class="container-fluid">
     <div class="waves-container">
         <div class="wave wave1"></div>
         <div class="wave wave2"></div>
         <div class="wave wave3"></div>
     </div>
     <div class="row">
-        <div class="col-md-10">
-            <span><span>&copy; Thomas MATHIS</span> | {{"now"|date('Y')}} </span><a href="mailto:tmathis.dev@gmail.com">Contact</a><a href="{{site.url}}/legal/">Mentions légales</a>
+        <div class="col-12 col-md-6 contact">
+            <a href="mailto:tmathis.dev@gmail.com" class="footer-logo-link"> 
+                <img src="{{theme.link}}/assets/src/img/mail.svg" alt="mail" class="logo-contact" />
+            </a>
+            <a href="https://github.com/DocXydre" class="footer-logo-link">
+                <img src="{{theme.link}}/assets/src/img/github.svg" alt="github" class="logo-contact" />
+            </a>
+            <a href="https://www.linkedin.com/in/mathisthomas/" class="footer-logo-link">
+                <img src="{{theme.link}}/assets/src/img/linkedin.svg" alt="linkedin" class="logo-contact" />
+            </a>
+            <a href="tel:+330651406229" class="footer-logo-link"> 
+                <img src="{{theme.link}}/assets/src/img/phone.svg" alt="phone" class="logo-contact" />
+            </a> 
         </div>
-        <div class="col-md-6 right">
-            <span>Design by </span><a>Thomas MATHIS</a>
+        <div class="col-12 col-md-6 blabla">
+            <span>&copy; Thomas MATHIS | {{"now"|date('Y')}} </span>
+            <a href="{{site.url}}/legal/">Mentions légales</a>
         </div>
     </div>
 </div>

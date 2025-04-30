@@ -1,5 +1,5 @@
 <?php
-// single-formation.php
+// single-experience.php
 $context = Timber::context();
 $context['post'] = new Timber\Post();
-Timber::render('single-formation.twig', $context);
+Timber::render('single-experience.twig', $context);
