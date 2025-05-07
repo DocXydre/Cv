@@ -145,7 +145,7 @@ header.header {
   top: toRem(110); 
   background-color: var(--color--secondary);
   height: toRem(110);
-  margin-top: -6px;
+  margin-top: toRem(20);
   display: flex;
   align-items: center;
   z-index: 8; 
@@ -157,7 +157,11 @@ header.header {
   #searchform {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; 
+    align-items: center;
+    gap: toRem(40); 
+    padding: 0 toRem(20);
+    
     input.search-field {
       color: var(--color--light);
       background-color: transparent;
@@ -169,6 +173,8 @@ header.header {
       border-bottom: 1px solid var(--color--light);
       width: 80%;
       height: 50px;
+      flex: 1; 
+      max-width: 70%;
     }
     input.search-field::placeholder {
       font-size: toRem(22);
@@ -178,7 +184,7 @@ header.header {
     }
     .searchbt {
       padding: toRem(20) toRem(30);
-      background-color: var(--color--primary);  
+      background-color: var(--color--dark);  
       border-radius: 20px;
       input {
         color: var(--color--light);
@@ -246,12 +252,13 @@ p#breadcrumbs {
 }
 
 #mobileMenu {
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
   position: fixed;
   top: -100vh;
   left: 0;
-  background-color: var(--color--secondary);
+  right: 0;
+  background-color: var(--color--dark);
   z-index: 10001;
   display: flex;
   flex-direction: column;
@@ -259,26 +266,50 @@ p#breadcrumbs {
   padding: 0 1rem;
   opacity: 0;
   transition: opacity $transition-duration $transition-duration;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  
   &.open {
     opacity: 1;
     top: 0;
   }
+  
   header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: toRem(21);
+    padding-bottom: toRem(15);
     .close-link {
-      transform: rotate(0deg);
-      transition: transform $transition-duration;
-      &:hover {
-        transform: rotate(90deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: toRem(40);
+      height: toRem(40);
+    
+      
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform $transition-duration;
+      }
+      
+      &:hover svg {
+        transform: translate(-50%, -50%) rotate(90deg);
       }
     }
   }
   nav {
+    align-self: flex-end; 
+    text-align: right;   
+    
     ul {
       list-style-type: none;
       margin: 0;
+      padding: 0;
 
       &:first-child {
         margin-bottom: toRem(36);
@@ -288,6 +319,7 @@ p#breadcrumbs {
         li {
           margin-bottom: toRem(10);
           a {
+            justify-content: flex-end; // Aligne les éléments à droite
             color: var(--color--light);
             font-size: toRem(18);
             font-weight: 500;
@@ -310,10 +342,9 @@ p#breadcrumbs {
           color: var(--color--primary);
           display: flex;
           align-items: center;
-
+          justify-content: flex-end; 
           transition: color $transition-duration;
         }
-
         &.home {
           a {
             svg {
@@ -446,6 +477,27 @@ p#breadcrumbs {
     top: toRem(110); 
     &.open {
       transform: translateY(0); 
+    }
+    #searchform {
+      padding: 0 toRem(10);
+      
+      input.search-field {
+        font-size: toRem(18);
+        line-height: toRem(24);
+      }
+      
+      input.search-field::placeholder {
+        font-size: toRem(18);
+      }
+      
+      .searchbt {
+        padding: toRem(12) toRem(20); // Bouton plus petit
+        border-radius: 15px; // Bordures ajustées
+        
+        input {
+          font-size: toRem(14); // Texte plus petit
+        }
+      }
     }
   }
 }

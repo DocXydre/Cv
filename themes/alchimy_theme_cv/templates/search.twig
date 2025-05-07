@@ -1,44 +1,62 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="hero bgclair">
-    {% if is_yoast_active %}
-        <div class="centre">
-            {{function('yoast_breadcrumb', '<p id="breadcrumbs">','</p>')}}
-        </div>
-    {% endif %}
-    <div class="centre">
-        <h1 class="titre1 jaune">{{ title }}</h1>
-        <svg xmlns="http://www.w3.org/2000/svg" width="33.43" height="33.43" viewBox="0 0 33.43 33.43">
-        <g id="Groupe_2067" data-name="Groupe 2067" transform="translate(-829 -604.022)">
-            <path id="Tracé_64" data-name="Tracé 64" d="M10.745,8.6l2.149-2.149L6.447,0,0,6.447,2.149,8.6,4.927,5.817V17.27H7.966V5.817Z" transform="translate(852.162 629.412) rotate(180)" fill="#f6c25c"/>
-            <path id="Tracé_65" data-name="Tracé 65" d="M28.534,4.9a16.715,16.715,0,1,0,0,23.638A16.715,16.715,0,0,0,28.534,4.9ZM26.385,7.045a13.676,13.676,0,1,0,0,19.341A13.676,13.676,0,0,0,26.385,7.045Z" transform="translate(862.43 637.452) rotate(180)" fill="#f6c25c" fill-rule="evenodd"/>
-        </g>
-        </svg>
-
-    </div>
-</div>
-<div class="container-fluid main">
-    {% if posts.found_posts == 0 %}
-    <div class="row">
-      <div class="col-lg-12 offset-lg-2 source">
-        <h2 class="titre2 violet">Désolé, il n'y a aucun résultat.</h2>
+<div class="container-fluid">
+  <!-- En-tête de recherche -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-header">
+        <h1 class="single-title">{{ title }}</h1>
+        
+        {% if is_yoast_active %}
+          {{function('yoast_breadcrumb', '<p id="breadcrumbs">','</p>')}}
+        {% endif %}
       </div>
     </div>
-    {% endif %}
-    {% for source in posts %}
-    <div class="row">
-        <div class="col-lg-12 offset-lg-2 source">
-        <h2 class="titre2 violet">{{source.post_title}}</h2>
-        <div>{{source.post_content}}</div>
-        <hr>
-        </div>
+  </div>
+
+  <!-- Message si aucun résultat -->
+  {% if posts.found_posts == 0 %}
+  <div class="row">
+    <div class="col-16">
+      <div class="single-content">
+        <h2 class="single-title">Désolé, il n'y a aucun résultat.</h2>
+      </div>
     </div>
-    {% endfor %}
-    <div class="row">
-        <div class="col-16">
-            {% include './partial/navicons.twig' with {'slug': post.slug} %}
+  </div>
+  {% endif %}
+  
+  <!-- Résultats de recherche -->
+  <div class="row row--equal-height">
+  {% for source in posts %}
+    <div class="col-16">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+          <h2>{{source.post_title}}</h2>
         </div>
+        
+        <div class="bento-card__info-container">
+          <!-- Type de contenu -->
+          <div class="competences-grid__item">
+            <div class="info-content">
+              {{ source.post_type|capitalize }}
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Description -->
+        <div class="bento-card__description">
+          {% if source.post_content %}
+            <span class="mobile-text">{{ source.post_content|striptags|slice(0, 250) }}{% if source.post_content|striptags|length > 250 %}...{% endif %}</span>
+            <span class="desktop-text">{{ source.post_content|striptags|slice(0, 800) }}{% if source.post_content|striptags|length > 800 %}...{% endif %}</span>
+          {% endif %}
+        </div>
+        
+        <a href="{{ source.link }}" class="discover-more ">Voir le contenu</a>
+      </div>
     </div>
+  {% endfor %}
+  </div>
 </div>
 {% endblock %}

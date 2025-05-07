@@ -7,36 +7,69 @@
   <div class="row row--equal-height">
     {% for formation in formations %}
       <div class="col-16">
-        <div class="bento-card">
+        <div class="bento-card bento-card--dark">
           <div class="bento-card__header">
             <h2>{{ formation.title }}</h2>
           </div>
-          <div class="card-list__item">
-            <div class="card-list__item-subtitle">
-              {% if formation.meta('institution') %}
-                <span class="institution">{{ formation.meta('institution') }}</span>
-              {% endif %}
+          
+          <div class="bento-card__info-container">
+            <!-- Institution & Location -->
+            <div class="bento-card__info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/location.svg" alt="Location" class="info-icon__svg info-icon__svg__dark">
+              </div>
+              <div class="info-content info-content__dark">
+                {% if formation.meta('institution') %}
+                  {{ formation.meta('institution') }},
+                {% endif %}
+                {{ formation.meta('location') }}
+              </div>
             </div>
-            <div class="card-list__item-date">
-              {% if formation.meta('date_start') %}
+            
+            <!-- Date -->
+            <div class="bento-card__info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/calendrier.svg" alt="Date" class="info-icon__svg info-icon__svg__dark">
+              </div>
+              <div class="info-content info-content__dark">
                 {{ formation.meta('date_start')|date('Y') }}
                 {% if formation.meta('date_end') %}
-                  - {{ formation.meta('date_end')|date('Y') }}
+                  {% if formation.meta('date_end')|split('/')|last == formation.meta('date_start')|date('Y') %}
+                  
+                  {% else %}
+                    - {{ formation.meta('date_end')|split('/')|last }}
+                  {% endif %}
                 {% else %}
                   - Actuellement
                 {% endif %}
-              {% endif %}
+              </div>
             </div>
-            <div class="card-list__item-description">
-              {% if formation.content %}
-                {{ formation.content|striptags|slice(0, 450) }}{% if formation.content|striptags|length > 450 %}...{% endif %}
-              {% endif %}
-            </div>
-            <a href="{{ formation.link }}" class="discover-more discover-more__dark">Découvrir plus</a>
+            
+            <!-- Diploma (if exists) -->
+            {% if formation.meta('diploma') %}
+              <div class="bento-card__info-item">
+                <div class="info-icon">
+                  <img src="{{ theme.link }}/assets/src/img/diplome.svg" alt="Diplôme" class="info-icon__svg info-icon__svg__dark">
+                </div>
+                <div class="info-content info-content__dark">
+                  {{ formation.meta('diploma') }}
+                </div>
+              </div>
+            {% endif %}
           </div>
+          
+          <!-- Description -->
+          <div class="bento-card__description">
+            {% if formation.content %}
+              <span class="mobile-text">{{ formation.content|striptags|slice(0, 450) }}{% if formation.content|striptags|length > 450 %}...{% endif %}</span>
+              <span class="desktop-text">{{ formation.content|striptags|slice(0, 1400) }}{% if formation.content|striptags|length > 1400 %}...{% endif %}</span>
+            {% endif %}
+          </div>
+          
+          <a href="{{ formation.link }}" class="discover-more">Découvrir plus</a>
         </div>
       </div>
-    {% endfor %}
+    {% endfor %}  
   </div>
 </div>
 

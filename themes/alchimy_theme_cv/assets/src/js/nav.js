@@ -25,7 +25,7 @@ const initBurgerMenuButton = () => {
 };
 
 const initMenuCloseButton = () => {
-  let closeButton = document.querySelector("#mobilemenu .closemenu");
+  let closeButton = document.querySelector("#mobileMenu .close-link");
   if (closeButton) {
     closeButton.addEventListener("click", (e) => {
       e.preventDefault();

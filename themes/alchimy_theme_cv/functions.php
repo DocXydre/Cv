@@ -283,3 +283,25 @@ class StarterSite extends Timber\Site
 ////
 
 new StarterSite();
+
+// Inclusion du fichier de traitement du formulaire
+require_once get_template_directory() . '/includes/process-form.php';
+
+// Actions AJAX pour le formulaire de contact
+add_action('wp_ajax_contact_form_submit', 'handle_contact_form_submit');
+add_action('wp_ajax_nopriv_contact_form_submit', 'handle_contact_form_submit');
+
+function handle_contact_form_submit() {
+    $response = process_contact_form();
+    wp_send_json($response);
+}
+
+// Ajout des variables JavaScript pour AJAX
+function add_contact_form_scripts() {
+    wp_localize_script('app', 'contactFormAjax', array(
+        'nonce' => wp_create_nonce('contact_form')
+    ));
+    
+    wp_add_inline_script('app', 'var ajaxurl = "' . admin_url('admin-ajax.php') . '";', 'before');
+}
+add_action('wp_enqueue_scripts', 'add_contact_form_scripts');

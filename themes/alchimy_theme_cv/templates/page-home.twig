@@ -41,84 +41,13 @@
 
   <div class="row row--equal-height">
     <!-- Formations -->
-    <div class="col-12 col-md-8">
-      <div class="bento-card bento-card--dark">
-        <div class="bento-card__header">
-          <h2>Formations</h2>
-        </div>
-        <div class="card-list">
-            {% for formation in formations %}
-            <div class="card-list__item">
-                <div class="card-list__item-title">{{ formation.title }}</div>
-                <div class="card-list__item-subtitle">{{ formation.meta('institution') }}</div>
-                <div class="card-list__item-date">
-                    {{ formation.meta('date_start')|date('Y') }}
-                    {% if formation.meta('date_end') %}
-                        - {{ formation.meta('date_end')|date('Y') }}
-                    {% else %}
-                        - Actuellement
-                    {% endif %}
-                </div>
-                <a href="{{ formation.link }}" class="bento-card__add-button">+</a>
-            </div>
-            {% endfor %}
-        </div>
-        <a href="/formations/" class="discover-more">Découvrir plus</a>
-      </div>
-    </div>
+    {% include 'formation.twig' %}
 
     <!-- Expérience -->
-    <div class="col-12 col-md-8">
-      <div class="bento-card bento-card--light">
-        <div class="bento-card__header">
-          <h2>Expérience Professionnelle</h2>
-        </div>
-        <div class="card-list">
-            {% for experience in experiences %}
-            <div class="card-list__item card-list__item-dark">
-                <div class="card-list__item-title">{{ experience.title }}</div>
-                <div class="card-list__item-subtitle">{{ experience.meta('company') }}</div>
-                <div class="card-list__item-date">
-                    {{ experience.meta('date_start')|date('Y') }}
-                    {% if experience.meta('date_end') %}
-                        - {{ experience.meta('date_end')|date('Y') }}
-                    {% else %}
-                        - Actuellement
-                    {% endif %}
-                </div>
-                <a href="{{ experience.link }}" class="bento-card__add-button">+</a>
-            </div>
-            {% endfor %}
-        </div>
-        <a href="/experiences/" class="discover-more discover-more__dark">Découvrir plus</a>
-      </div>
-    </div>
+    {% include 'experience.twig' %}
 
     <!-- Projets -->
-    <div class="col-20">
-      <div class="bento-card bento-card--dark">
-        <div class="bento-card__header">
-          <h2>Projets Réalisés</h2>
-        </div>
-        <div class="projects-slider">
-            {% for projet in projets %}
-            <div class="projects-slider__item">
-                <div class="projects-slider__item-header">
-                    <div class="projects-slider__item-title">{{ projet.title }}</div>
-                    <div class="projects-slider__item-date">{{ projet.meta('date')|date('m/Y') }}</div>
-                </div>
-                <div class="projects-slider__item-tags">
-                    <span class="bento-card__tag">Symfony</span>
-                    <span class="bento-card__tag">React</span>
-                    <span class="bento-card__tag">HTML</span>
-                    <a href="{{ projet.link }}" class="bento-card__add-button">+</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <a href="{{site.link}}/projets/" class="discover-more">Découvrir plus</a>
-      </div>
-    </div>
+    {% include 'projet.twig' %}
   </div>
 </div>
 {% endblock %}

@@ -46,14 +46,14 @@
   <div id="mobileMenu">
     <header>
       <a class="mobile-logo-link" href="{{site.url}}" rel="home">
-        <img src="{{theme.link}}/assets/src/img/logo-mobile.svg" alt="logo" />
+        <img src="{{theme.link}}/assets/src/img/logo-mobile.svg" alt="logo" width="200" height="100" />
       </a>
       <a href="#" class="close-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="21.875" height="21.875" viewBox="0 0 21.875 21.875">
           <g id="vuesax_linear_close-circle" data-name="vuesax/linear/close-circle" transform="translate(-266.053 -266.142)">
             <g id="close-circle" transform="translate(267.82 267.91)">
-              <path id="Vector" d="M0,18.34,18.34,0" transform="translate(0 0)" fill="none" stroke="#675ec5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
-              <path id="Vector-2" data-name="Vector" d="M18.34,18.34,0,0" transform="translate(0 0)" fill="none" stroke="#675ec5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+              <path id="Vector" d="M0,18.34,18.34,0" transform="translate(0 0)" fill="none" stroke="#1b1b5d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+              <path id="Vector-2" data-name="Vector" d="M18.34,18.34,0,0" transform="translate(0 0)" fill="none" stroke="#1b1b5d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
             </g>
           </g>
         </svg>
@@ -62,7 +62,6 @@
     <nav>
       {% include "menu.twig" with {'items': menu.get_items} %}
       <ul>
-        <li><a href="mailto:tmathis.dev@gmail.com">Contact</a></li>
         <li><a href="{{site.url}}/legal/">Mentions légales</a></li>
       </ul>
     </nav>
@@ -70,9 +69,9 @@
 
   <div class="searchbar container-fluid">
     <form id="searchform" method="get" action="{{site.url}}" class="">
-      <input type="text" class="search-field" name="s" placeholder="{{__("what_do_you_search", "Portfolio")}}" id="searchinput" />
+      <input type="text" class="search-field" name="s"  id="searchinput" />
       <div class="searchbt">
-        <input type="submit" value="{{__("launch_search", "Portfolio")}}" />
+        <input type="submit" value="{{__("Rechercher", "Portfolio")}}" />
       </div>
     </form>
   </div>

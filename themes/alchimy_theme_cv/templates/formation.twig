@@ -1,0 +1,30 @@
+<!-- Formations -->
+    <div class="col-12 col-md-8">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+          <h2>{{ titre|default('Formations') }}</h2>
+        </div>
+        <div class="card-list">
+            {% for formation in formations %}
+            <div class="card-list__item">
+                <div class="card-list__item-title">{{ formation.title }}</div>
+                <div class="card-list__item-subtitle">{{ formation.meta('institution') }}</div>
+                <div class="card-list__item-date">
+                    {{ formation.meta('date_start')|date('Y') }}
+                    {% if formation.meta('date_end') %}
+                      {% if formation.meta('date_end')|split('/')|last == formation.meta('date_start')|date('Y') %}
+                      
+                      {% else %}
+                        - {{ formation.meta('date_end')|split('/')|last }}
+                      {% endif %}
+                    {% else %}
+                      - Actuellement
+                    {% endif %}
+                </div>
+                <a href="{{ formation.link }}" class="bento-card__add-button">+</a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{{site.link}}/formations/" class="discover-more">Découvrir plus</a>
+      </div>
+    </div>

@@ -1,0 +1,25 @@
+<!-- Projets -->
+    <div class="col-20">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+          <h2>{{ titre|default('Projets Réalisés') }}</h2>
+        </div>
+        <div class="projects-slider">
+            {% for projet in projets %}
+            <div class="projects-slider__item">
+                <div class="projects-slider__item-header">
+                    <div class="projects-slider__item-title">{{ projet.title }}</div>
+                    <div class="projects-slider__item-date">{{ projet.meta('date')|date('m/Y') }}</div>
+                </div>
+                <div class="projects-slider__item-tags">
+                    <span class="bento-card__tag">Symfony</span>
+                    <span class="bento-card__tag">React</span>
+                    <span class="bento-card__tag">HTML</span>
+                    <a href="{{ projet.link }}" class="bento-card__add-button">+</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{{site.link}}/projets/" class="discover-more">Découvrir plus</a>
+      </div>
+    </div>
