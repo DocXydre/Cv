@@ -2,13 +2,56 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-    <h1>Projets</h1>
-    <ul>
-        {% for projet in projets %}
-            <li>
-                <a href="{{ projet.link }}">{{ projet.title }}</a>
-                <p>{{ projet.meta('date') }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+<div class="container-fluid">
+  
+  <div class="row row--equal-height">
+    {% for projet in projets %}
+      <div class="col-16">
+        <div class="bento-card bento-card--dark">
+          <div class="bento-card__header">
+            <div class="bento-card__header-content">
+              <h2>{{ projet.title }}</h2>
+              <!-- Type de projet -->
+              {% if projet.terms('type_projet') %}
+                  <h4>{{ projet.terms('type_projet')|join(', ') }}</h4>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="bento-card__info-container">
+            <!-- Date -->
+            <div class="bento-card__info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/calendrier.svg" alt="Date" class="info-icon__svg info-icon__svg__light">
+              </div>
+              <div class="info-content info-content__light">
+                {{ projet.meta('date') }}
+              </div>
+            </div>
+            
+            <!-- Compétences/Tags -->
+            <div class="bento-card__info-item">
+              <div class="info-content bento-card__tags">
+                {% for competence in projet.terms('competence') %}
+                  <span class="bento-card__tag">{{ competence.name }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <!-- Description -->
+          <div class="bento-card__description">
+            {% if projet.content %}
+              <span class="mobile-text">{{ projet.content|striptags|slice(0, 450) }}{% if projet.content|striptags|length > 450 %}...{% endif %}</span>
+              <span class="desktop-text">{{ projet.content|striptags|slice(0, 1400) }}{% if projet.content|striptags|length > 1400 %}...{% endif %}</span>
+            {% endif %}
+          </div>
+          
+          <a href="{{ projet.link }}" class="discover-more">Découvrir plus</a>
+        </div>
+      </div>
+    {% endfor %}  
+  </div>
+</div>
+
 {% endblock %}

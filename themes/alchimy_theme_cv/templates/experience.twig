@@ -1,0 +1,30 @@
+    <!-- Expérience -->
+    <div class="col-12 col-md-8">
+      <div class="bento-card bento-card--light">
+        <div class="bento-card__header">
+          <h2>{{titre|default('Expériences Professionnelles')}}</h2>
+        </div>
+        <div class="card-list">
+            {% for experience in experiences %}
+            <div class="card-list__item card-list__item-dark">
+                <div class="card-list__item-title">{{ experience.title }}</div>
+                <div class="card-list__item-subtitle">{{ experience.meta('company') }}</div>
+                <div class="card-list__item-date">
+                    {{ experience.meta('date_start')|date('Y') }}
+                    {% if experience.meta('date_end') %}
+                        {% if experience.meta('date_end')|split('/')|last == experience.meta('date_start')|date('Y') %}
+                        
+                        {% else %}
+                            - {{ experience.meta('date_end')|split('/')|last }}
+                        {% endif %}
+                    {% else %}
+                        - Actuellement
+                    {% endif %}
+                </div>
+                <a href="{{ experience.link }}" class="bento-card__add-button">+</a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{{site.link}}/experiences/" class="discover-more discover-more__dark">Découvrir plus</a>
+      </div>
+    </div>

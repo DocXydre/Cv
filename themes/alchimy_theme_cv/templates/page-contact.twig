@@ -1,0 +1,77 @@
+{# templates/single-contact.twig #}
+{% extends 'base.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+
+<div class="bento-card bento-card--dark">
+  <!-- En-tête de la page -->
+  <div class="row">
+    <div class="col-16">
+      <div class="bento-card__header">
+        <h1>Contact</h1>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Liens de contact -->
+  <div class="row contact-links">
+    <div class="col-16 ">
+      <div class="contact-buttons">
+        <a href="mailto:tmathis.dev@gmail.com" class="contact-btn">
+          <img src="{{theme.link}}/assets/src/img/mail.svg" alt="mail" class="contact-icon" />
+          <span>tmathis.dev@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mathisthomas/" class="contact-btn">
+          <img src="{{theme.link}}/assets/src/img/linkedin.svg" alt="linkedin" class="contact-icon" />
+          <span>Linkedin</span>
+        </a>
+        <a href="https://github.com/DocXydre" class="contact-btn">
+          <img src="{{theme.link}}/assets/src/img/github.svg" alt="github" class="contact-icon" />
+          <span>Github</span>
+        </a>
+        <a href="tel:+330651406229" class="contact-btn">
+          <img src="{{theme.link}}/assets/src/img/phone.svg" alt="phone" class="contact-icon" />
+          <span>06 51 40 62 29</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Formulaire de contact -->
+  <div class="row">
+    <div class="col-16">
+      <div class="contact-form-container">
+        <div class="form-header">
+          <h2>Envoyez-moi un message</h2>
+        </div>
+        <div class="form-content">
+          {% if form_response %}
+            <div class="form-response {{ form_response.success ? 'success' : 'error' }}">
+              {{ form_response.message }}
+            </div>
+          {% endif %}
+          
+          <form id="contact-form" method="post">
+            <input type="hidden" name="contact_nonce" value="{{ nonce }}">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Nom" required>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" placeholder="Sujet" required>
+            </div>
+            
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder="Message" rows="8" required></textarea>
+            </div>
+            
+            <button type="submit" class="send-button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

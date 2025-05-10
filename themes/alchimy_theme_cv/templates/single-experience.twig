@@ -2,38 +2,92 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <article class="experience-single">
-        <div class="container">
-            <div class="experience-header">
-                <h1 class="experience-title">{{ post.title }}</h1>
+<div class="container-fluid">
+  <!-- En-tête de l'expérience -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-header">
+        <h1 class="single-title">{{ post.title }}</h1>
+        
+        <div class="single-meta-info">
+          <!-- Entreprise & Localisation -->
+          <div class="info-item">
+            <div class="info-icon">
+              <img src="{{ theme.link }}/assets/src/img/location.svg" alt="Location" class="info-icon__svg">
+            </div>
+            <div class="info-content">
+              {% if post.meta('company') %}
+                {{ post.meta('company') }},
+              {% endif %}
+              {{ post.meta('location') }}
+            </div>
+          </div>
+          
+          <!-- Date -->
+          <div class="info-item">
+            <div class="info-icon">
+              <img src="{{ theme.link }}/assets/src/img/calendrier.svg" alt="Date" class="info-icon__svg">
+            </div>
+            <div class="info-content">
+              {{ post.meta('date_start')|date('Y') }}
+              {% if post.meta('date_end') %}
+                {% if post.meta('date_end')|split('/')|last == post.meta('date_start')|date('Y') %}
                 
-                {% if post.company %}
-                    <div class="experience-company">
-                        <span>{{ post.company }}</span>
-                    </div>
+                {% else %}
+                  - {{ post.meta('date_end')|split('/')|last }}
                 {% endif %}
-                
-                <div class="experience-meta">
-                    {% if post.get_field('date_start') %}
-                        <span class="experience__date">
-                            {{ post.get_field('date_start')|date('Y') }}
-                            {% if post.get_field('date_end') %}
-                                - {{ post.get_field('date_end')|date('Y') }}
-                            {% else %}
-                                - {{ 'Actuellement' }}
-                            {% endif %}
-                        </span>
-                    {% endif %}
-                    
-                    {% if post.location %}
-                        <span class="experience-location">{{ post.location }}</span>
-                    {% endif %}
-                </div>
+              {% else %}
+                - Actuellement
+              {% endif %}
             </div>
-            
-            <div class="experience-content">
-                {{ post.content }}
+          </div>
+          
+          <!-- Poste (si disponible) -->
+          {% if post.meta('position') %}
+            <div class="info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/position.svg" alt="Poste" class="info-icon__svg">
+              </div>
+              <div class="info-content">
+                {{ post.meta('position') }}
+              </div>
             </div>
+          {% endif %}
         </div>
-    </article>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contenu de l'expérience -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-content">
+        {{ post.content }}
+      </div>
+    </div>
+  </div>
+
+  <div class="single-header">
+    <h1 class="single-title">Ressources</h1>
+  </div>
+  
+  <div class="container-fluid">
+    <div class="row row--equal-height">
+      <!-- Formations -->
+      {% include 'formation.twig' with {
+        'titre': 'Formation liée à cette expérience',
+      } %}
+
+      <!-- Expérience -->
+      {% include 'experience.twig' with {
+        'titre': 'Autres expériences',
+      } %}
+
+      <!-- Projets -->
+      {% include 'projet.twig' with {
+        'titre': 'Projets liés à cette expérience',
+      } %}
+    </div>
+  </div>
+</div>
 {% endblock %}

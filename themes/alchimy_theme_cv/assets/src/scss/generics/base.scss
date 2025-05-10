@@ -11,18 +11,26 @@ html {
   scroll-behavior: smooth;
 }
 
-
-
 body {
   font-family: $font-family-sans-serif;
   font-weight: 300;
   color: var(--color--primary);
   margin: 0;
-  background-color: #{ $color--light };
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  background-color: var(--color--light);
   .content-spacer {
-    height: 100px; 
+    height: 200px; 
     width: 100%;
-    clear: both;
+  }
+
+  .content-wrapper {
+    height: auto !important; 
+    flex: 1 0 auto; 
+    padding-top: 170px ;
+    padding-bottom: 140px !important ;
+  
   }
 }
 

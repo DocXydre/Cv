@@ -1,36 +1,92 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <article class="projet">
-        <div class="projet__header">
-            <h1 class="projet__title">{{ post.title }}</h1>
-            
-            {% if post.get_field('type') %}
-                <div class="formation__type">{{ post.get_field('type') }}</div>
-            {% endif %}
-            
-            <div class="projet__meta">
-                {% if post.get_field('date_start') %}
-                    <span class="projet__date">
-                        {{ post.get_field('date')|date('m/Y') }}
-                    </span>
-                {% endif %}
-                
-                {% if post.get_field('location') %}
-                    <span class="projet__location">{{ post.get_field('location') }}</span>
-                {% endif %}
-            </div>
-        </div>
+<div class="container-fluid">
+  <!-- En-tête du projet -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-header">
+        <h1 class="single-title">{{ post.title }}</h1>
         
-        <div class="projet__content">
-            {{ post.content }}
-        </div>
-
-        {% if post.get_field('link') %}
-            <div class="projet__link">
-                <h3>{{ 'Lien' }}</h3>
-                <a href="{{ post.get_field('link') }}" target="_blank" rel="noopener noreferrer">{{ post.get_field('link') }}</a>
+        <div class="single-meta-info">
+          <!-- Type de projet (si disponible) -->
+          {% if post.meta('type') %}
+            <div class="info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/type.svg" alt="Type" class="info-icon__svg">
+              </div>
+              <div class="info-content">
+                {{ post.meta('type') }}
+              </div>
             </div>
+          {% endif %}
+          
+          <!-- Date -->
+          {% if post.meta('date') %}
+            <div class="info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/calendrier.svg" alt="Date" class="info-icon__svg">
+              </div>
+              <div class="info-content">
+                {{ post.meta('date')|date('m/Y') }}
+              </div>
+            </div>
+          {% endif %}
+          
+          <!-- Localisation (si disponible) -->
+          {% if post.meta('location') %}
+            <div class="info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/location.svg" alt="Location" class="info-icon__svg">
+              </div>
+              <div class="info-content">
+                {{ post.meta('location') }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contenu du projet -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-content">
+        {{ post.content }}
+        
+        <!-- Lien du projet (si disponible) -->
+        {% if post.meta('link') %}
+          <div class="project-link">
+            <h3>Lien</h3>
+            <a href="{{ post.meta('link') }}" target="_blank" rel="noopener noreferrer">{{ post.meta('link') }}</a>
+          </div>
         {% endif %}
-    </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="single-header">
+    <h1 class="single-title">Ressources</h1>
+  </div>
+  
+  <div class="container-fluid">
+    <div class="row row--equal-height">
+      <!-- Formations -->
+      {% include 'formation.twig' with {
+        'titre': 'Formation liée à ce projet',
+      } %}
+
+      <!-- Expérience -->
+      {% include 'experience.twig' with {
+        'titre': 'Expériences liées à ce projet',
+      } %}
+
+      <!-- Projets -->
+      {% include 'projet.twig' with {
+        'titre': 'Autres projets',
+      } %}
+    </div>
+  </div>
+</div>
 {% endblock %}
