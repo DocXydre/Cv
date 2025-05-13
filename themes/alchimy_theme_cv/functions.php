@@ -273,10 +273,29 @@ class StarterSite extends Timber\Site
 	{
 		$twig->addExtension(new Twig\Extension\StringLoaderExtension());
 		$twig->addFilter(new Twig\TwigFilter('myfoo', array($this, 'myfoo')));
+		
 		return $twig;
 	}
 
+	// Fonction auxiliaire pour attribuer des classes de taille aux blocs
+	private function get_bento_size_class($index, $element) {
+		$classes = ['bento-small', 'bento-medium', 'bento-large'];
+		
+		// Les titres sont toujours larges
+		if (strpos($element, '<h') === 0) {
+			return 'bento-heading bento-large';
+		}
+		
+		// Les images alternent entre moyennes et grandes
+		if (strpos($element, '<img') !== false || strpos($element, '<figure') !== false) {
+			return 'bento-image ' . ($index % 2 == 0 ? 'bento-medium' : 'bento-large');
+		}
+		
+		// Les paragraphes alternent entre petits et moyens
+		return 'bento-paragraph ' . ($index % 3 == 0 ? 'bento-small' : 'bento-medium');
 	}
+
+}
 
 ////
 //// SITE INITIALIZATION --------------------------------

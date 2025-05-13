@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container-fluid">
+<div class="container-fluid">
   <div class="row row--equal-height">
     <!-- Carte profil -->
     <div class="col-12 col-md-10">
@@ -10,13 +11,13 @@
                 <h2>Profil</h2>
             </div>
             <div class="profile-card">
-                {% if post.meta('pp') %}
+                {% if post.thumbnail %}
                     <div class="profile-card__image">
-                        <img src="{{ Image(post.meta('pp')).src }}" alt="Photo de profil" class="profile-card__avatar">
+                        <img src="{{ post.thumbnail.src }}" alt="Photo de profil" class="profile-card__avatar">
                     </div>
                 {% endif %}
                 <div class="profile-card__description">
-                    {{ post.meta('description') }}
+                    {{ post.content }}
                 </div>
             </div>
         </div>
@@ -39,6 +40,7 @@
     </div>
   </div>
 
+
   <div class="row row--equal-height">
     <!-- Formations -->
     {% include 'formation.twig' %}
@@ -49,5 +51,6 @@
     <!-- Projets -->
     {% include 'projet.twig' %}
   </div>
+</div>
 </div>
 {% endblock %}

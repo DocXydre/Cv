@@ -1,0 +1,117 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row row--equal-height">
+    <!-- Origines -->
+    <div class="col-12 col-md-6">
+      <div class="bento-card">
+        <div class="bento-card__header">
+          <h2>Mes origines</h2>
+        </div>
+        <div class="bento-card__content">
+          <div class="profile-card">
+            <div class="profile-card__image">
+              <img src="{{ theme.link }}/assets/images/vosges.jpg" alt="Paysage des Vosges">
+            </div>
+            <div class="profile-card__description">
+              <p>Originaire des Vosges, c'est dans ce cadre magnifique que je me sens le plus à l'aise. J'apprécie particulièrement me détendre dans mon petit village, entouré de la nature et de la tranquillité. Passionné de moto, j'aime parcourir les routes sinueuses de ces montagnes vallonnées. Je conduis une SV650, une moto que j'aime apprendre à bricoler.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Vie à Nancy -->
+    <div class="col-12 col-md-6">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+          <h2>Ma vie à Nancy</h2>
+        </div>
+        <div class="bento-card__content">
+          <div class="profile-card">
+            <div class="profile-card__image">
+              <img src="{{ theme.link }}/assets/images/place-stanislas.jpg" alt="Place Stanislas Nancy">
+            </div>
+            <div class="profile-card__description">
+              <p>Lorsque je suis motivé, je me mets à courir. Ce sport simple me permet de me ressourcer et de me maintenir en forme. La région regorge de spécialités que j'affectionne, comme les beignets de brimbelles. Cependant, en raison de mes études, je ne peux plus en profiter autant. J'ai troqué ces montagnes pour la ville de Nancy, que j'apprécie tout de même, car c'est là que se trouve une grande partie de mes amis. J'aime les retrouver le soir près de la magnifique Place Stanislas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row--equal-height">
+    <!-- Passions -->
+    <div class="col-12">
+      <div class="bento-card">
+        <div class="bento-card__header">
+          <h2>Mes passions</h2>
+        </div>
+        <div class="row">
+          <!-- Moto -->
+          <div class="col-md-4">
+            <div class="profile-card">
+              <div class="profile-card__image">
+                <img src="{{ theme.link }}/assets/images/sv650.jpg" alt="Ma moto SV650">
+              </div>
+              <div class="profile-card__description">
+                <h3>La moto</h3>
+                <p>Passionné de moto, j'aime parcourir les routes sinueuses des Vosges. Je conduis une SV650, que j'aime également bricoler.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Photographie -->
+          <div class="col-md-4">
+            <div class="profile-card">
+              <div class="profile-card__image">
+                <img src="{{ theme.link }}/assets/images/photo-urbaine.jpg" alt="Photographie urbaine">
+              </div>
+              <div class="profile-card__description">
+                <h3>La photographie</h3>
+                <p>La photographie est une autre de mes passions. J'aime capturer des moments avec mes amis ou lors de mes voyages. La photographie urbaine a une place particulière dans mon cœur, car elle me permet de saisir l'essence des villes que je visite.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Musique -->
+          <div class="col-md-4">
+            <div class="profile-card">
+              <div class="profile-card__image">
+                <img src="{{ theme.link }}/assets/images/musique-rap.jpg" alt="Musique rap">
+              </div>
+              <div class="profile-card__description">
+                <h3>La musique</h3>
+                <p>Grâce à Internet, j'ai également pu découvrir et apprécier la musique, et plus particulièrement le rap. Connaisseur de ce genre musical, j'apprécie sa diversité et sa capacité à se réinventer constamment. Je peux passer énormément de temps à en écouter, au point d'effrayer parfois mes amis avec mes statistiques d'écoute !</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row row--equal-height">
+    <!-- Technologie -->
+    <div class="col-12 col-md-6">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+          <h2>Mon rapport à la technologie</h2>
+        </div>
+        <div class="bento-card__content">
+          <div class="profile-card">
+            <div class="profile-card__image">
+              <img src="{{ theme.link }}/assets/images/mario64.jpg" alt="Super Mario 64">
+            </div>
+            <div class="profile-card__description">
+              <p>Ayant grandi avec Internet, j'ai eu très tôt accès à l'ordinateur familial, ce qui m'a permis de faire mes premières recherches et de découvrir comment accéder au toit de la princesse Peach dans Super Mario 64. Cette curiosité m'a ouvert les portes d'un puits de connaissances quasi infini, me permettant d'en apprendre énormément sur des sujets qui me passionnent, tels que les sciences et les nouvelles technologies. Internet m'a également permis de sortir de ma campagne bien éloignée, en me connectant au monde et en élargissant mes horizons.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
