@@ -1,93 +1,93 @@
 {% block html_head_container %}
-
-{% include 'html-header.twig' %}
-	{% block head %}
-	{% endblock %}
-	</head>
+  {% include 'html-header.twig' %}
+  {% block head %}
+  {% endblock %}
+  </head>
 {% endblock %}
 
-	<body class="{{body_class}}" data-template="base.twig">
-		<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
-		<header class="header container-fluid" >
-			{% block header %}
-					<a href="{{site.url}}" rel="home"><img src="{{theme.link}}/assets/src/img/logo.svg" alt="logo" width="200" height="100" class="header-logo" /></a>
-					
-					<nav id="header__nav" role="navigation">
-						
+<body class="{{body_class}}" data-template="base.twig">
+  <a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
+  <header class="header container-fluid">
+    {% block header %}
+      <a href="{{site.url}}" rel="home">
+        <img src="{{theme.link}}/assets/src/img/logo.svg" alt="logo" width="200" height="100" class="header-logo" />
+      </a>
+      
+      <div class="header-nav-container">
+        <nav id="header__nav" role="navigation">
+          <div>{% include "menu.twig" with {'items': menu.get_items} %}</div>
 
-						<div>{% include "menu.twig" with {'items': menu.get_items} %}</div>
+          <a href="#" id="burger" class="burger--hide-on-desktop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21.021" height="18.467" viewBox="0 0 21.021 18.467">
+              <g id="Groupe_2192" data-name="Groupe 2192" transform="translate(-299.5 -28.411)">
+                <path id="first" data-name="Tracé 8473" d="M0,0H18.521" transform="translate(300.75 29.661)" fill="none" stroke="black" stroke-linecap="round" stroke-width="2.5" pathLength="100" />
+                <line id="second" data-name="Ligne 28" x2="18.521" transform="translate(300.75 45.627)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" pathLength="100" />
+                <line id="third" data-name="Ligne 29" x2="18.521" transform="translate(300.75 37.644)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" pathLength="100" />
+              </g>
+            </svg>
+          </a>
+        </nav> 
+        
+        <a href="#" id="search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24.912" height="24.912" viewBox="0 0 24.912 24.912">
+            <path id="zoom-in" d="M19.238,19.137a7.909,7.909,0,1,0-11.185,0A7.909,7.909,0,0,0,19.238,19.137ZM21.1,6.089a10.547,10.547,0,0,1,.873,13.925q.03.027.059.056l5.592,5.592a1.318,1.318,0,0,1-1.864,1.864L20.17,21.934q-.029-.029-.056-.059A10.546,10.546,0,1,1,21.1,6.089Z" transform="translate(-3.1 -3)" fill="#fffff" fill-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
 
-						<a href="#" id="burger" class="burger--hide-on-desktop">
-							<svg xmlns="http://www.w3.org/2000/svg" width="21.021" height="18.467" viewBox="0 0 21.021 18.467">
-							<g id="Groupe_2192" data-name="Groupe 2192" transform="translate(-299.5 -28.411)">
-								<path id="first" data-name="Tracé 8473" d="M0,0H18.521" transform="translate(300.75 29.661)" fill="none" stroke="black" stroke-linecap="round" stroke-width="2.5" pathLength="100" />
-								<line id="second" data-name="Ligne 28" x2="18.521" transform="translate(300.75 45.627)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" pathLength="100" />
-								<line id="third" data-name="Ligne 29" x2="18.521" transform="translate(300.75 37.644)" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" pathLength="100" />
-							</g>
-							</svg>
-						</a>
-						<a href="#" id="search">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24.912" height="24.912" viewBox="0 0 24.912 24.912">
-								<path id="zoom-in" d="M19.238,19.137a7.909,7.909,0,1,0-11.185,0A7.909,7.909,0,0,0,19.238,19.137ZM21.1,6.089a10.547,10.547,0,0,1,.873,13.925q.03.027.059.056l5.592,5.592a1.318,1.318,0,0,1-1.864,1.864L20.17,21.934q-.029-.029-.056-.059A10.546,10.546,0,1,1,21.1,6.089Z" transform="translate(-3.1 -3)" fill="#fffff" fill-rule="evenodd"/>
-							</svg>
-						</a>
-					</nav> 
-				</div>
-		<div class="header-waves-container">
-  			<div class="header-wave header-wave1"></div>
-  			<div class="header-wave header-wave2"></div>
-  			<div class="header-wave header-wave3"></div>
-		</div>
-			{% endblock %}
-		</header>
-		
-		<div id="mobileMenu">
-			<header>
-				<a class="mobile-logo-link" href="{{site.url}}" rel="home"><img src="{{theme.link}}/assets/src/img/logo-mobile.svg" alt="logo" /></a>
-				<a href="#" class="close-link">
-					<svg xmlns="http://www.w3.org/2000/svg" width="21.875" height="21.875" viewBox="0 0 21.875 21.875">
-					<g id="vuesax_linear_close-circle" data-name="vuesax/linear/close-circle" transform="translate(-266.053 -266.142)">
-						<g id="close-circle" transform="translate(267.82 267.91)">
-						<path id="Vector" d="M0,18.34,18.34,0" transform="translate(0 0)" fill="none" stroke="#675ec5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
-						<path id="Vector-2" data-name="Vector" d="M18.34,18.34,0,0" transform="translate(0 0)" fill="none" stroke="#675ec5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
-						</g>
-					</g>
-					</svg>
-				</a>
-			</header>
-			<nav>
-				{% include "menu.twig" with {'items': menu.get_items} %}
-				<ul>
-					<li><a href="mailto: tmathis.dev@gmail.com">Contact</a></li>
-					<li><a href="{{site.url}}/legal/">Mentions légales</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="searchbar container-fluid">
-			<form id="searchform" method="get" action="{{site.url}}" class="">
-				<input type="text" class="search-field" name="s" placeholder="{{__("what_do_you_search", "Portfolio")}}" id="searchinput"  />
-				<div class="searchbt">
-					<input type="submit" value="{{__("launch_search", "Portfolio")}}" />
-				</div>			
-			</form>
-		</div>
+      <div class="header-waves-container">
+        <div class="header-wave header-wave1"></div>
+        <div class="header-wave header-wave2"></div>
+        <div class="header-wave header-wave3"></div>
+      </div>
+    {% endblock %}
+  </header>
+  
+  <div id="mobileMenu">
+    <header>
+      <a class="mobile-logo-link" href="{{site.url}}" rel="home">
+        <img src="{{theme.link}}/assets/src/img/logo-mobile.svg" alt="logo" width="200" height="100" />
+      </a>
+      <a href="#" class="close-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="21.875" height="21.875" viewBox="0 0 21.875 21.875">
+          <g id="vuesax_linear_close-circle" data-name="vuesax/linear/close-circle" transform="translate(-266.053 -266.142)">
+            <g id="close-circle" transform="translate(267.82 267.91)">
+              <path id="Vector" d="M0,18.34,18.34,0" transform="translate(0 0)" fill="none" stroke="#1b1b5d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+              <path id="Vector-2" data-name="Vector" d="M18.34,18.34,0,0" transform="translate(0 0)" fill="none" stroke="#1b1b5d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+            </g>
+          </g>
+        </svg>
+      </a>
+    </header>
+    <nav>
+      {% include "menu.twig" with {'items': menu.get_items} %}
+      <ul>
+        <li><a href="{{site.url}}/legal/">Mentions légales</a></li>
+      </ul>
+    </nav>
+  </div>
 
-		<div class="content-spacer"></div>
-		<section id="content" role="main" class="content-wrapper">
-			
-			{% block content %}
-				Sorry, no content
-			{% endblock %}
-			
-		</section>
+  <div class="searchbar container-fluid">
+    <form id="searchform" method="get" action="{{site.url}}" class="">
+      <input type="text" class="search-field" name="s"  id="searchinput" />
+      <div class="searchbt">
+        <input type="submit" value="{{__("Rechercher", "Portfolio")}}" />
+      </div>
+    </form>
+  </div>
 
-		<div class="content-spacer"></div>
+  <div class="content-spacer"></div>
+  <section id="content" role="main" class="content-wrapper">
+    {% block content %}
+      Sorry, no content
+    {% endblock %}
+  </section>
 
-		{% block footer %}
-			<footer id="footer">
-				{% include 'footer.twig' %}
-			</footer>
-			{{ function('wp_footer') }}
-		{% endblock %}
-	</body>
+  {% block footer %}
+    <footer id="footer">
+      {% include 'footer.twig' %}
+    </footer>
+    {{ function('wp_footer') }}
+  {% endblock %}
+</body>
 </html>

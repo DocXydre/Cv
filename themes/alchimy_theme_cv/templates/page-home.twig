@@ -1,37 +1,56 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="home">
-            <div class="experience-content">
-                {{ post.content }}
+<div class="container-fluid">
+<div class="container-fluid">
+  <div class="row row--equal-height">
+    <!-- Carte profil -->
+    <div class="col-12 col-md-10">
+        <div class="bento-card">
+            <div class="bento-card__header">
+                <h2>Profil</h2>
             </div>
+            <div class="profile-card">
+                {% if post.thumbnail %}
+                    <div class="profile-card__image">
+                        <img src="{{ post.thumbnail.src }}" alt="Photo de profil" class="profile-card__avatar">
+                    </div>
+                {% endif %}
+                <div class="profile-card__description">
+                    {{ post.content }}
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {# Sections ajoutées #}
-    <section>
-        <h2>Dernières Formations</h2>
-        <ul>
-            {% for formation in formations %}
-                <li><a href="{{ formation.link }}">{{ formation.title }}</a></li>
+    <!-- Carte compétences -->
+    <div class="col-12 col-md-6">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+            <h2>Compétences</h2>
+        </div>
+        <div class="competences-grid">
+            {% for competence in competences %}
+                <div class="competences-grid__item">
+                    {{ competence.name }}
+                    </div>
             {% endfor %}
-        </ul>
-    </section>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <section>
-        <h2>Dernières Expériences</h2>
-        <ul>
-            {% for experience in experiences %}
-                <li><a href="{{ experience.link }}">{{ experience.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </section>
 
-    <section>
-        <h2>Derniers Projets</h2>
-        <ul>
-            {% for projet in projets %}
-                <li><a href="{{ projet.link }}">{{ projet.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </section>
+  <div class="row row--equal-height">
+    <!-- Formations -->
+    {% include 'formation.twig' %}
+
+    <!-- Expérience -->
+    {% include 'experience.twig' %}
+
+    <!-- Projets -->
+    {% include 'projet.twig' %}
+  </div>
+</div>
 </div>
 {% endblock %}

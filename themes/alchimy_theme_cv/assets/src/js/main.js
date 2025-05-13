@@ -1,4 +1,5 @@
 import { initNav } from "./nav";
+import './contact-form.js';
 
 ////
 //// FUNCTIONS

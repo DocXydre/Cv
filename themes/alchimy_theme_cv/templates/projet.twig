@@ -1,0 +1,36 @@
+<!-- Projets -->
+    <div class="col-20">
+      <div class="bento-card bento-card--dark">
+        <div class="bento-card__header">
+          <h2>{{ titre|default('Projets Réalisés') }}</h2>
+        </div>
+        <div class="projects-container">
+          <div class="projects-slider">
+            {% for projet in projets %}
+            <div class="projects-slider__item">
+                <div class="projects-slider__item-header">
+                    <h2 class="projects-slider__item-title">{{ projet.title }}</h2>
+                    {% if projet.terms('type_projet') %}
+                        <div class="projects-slider__item-type">{{ projet.terms('type_projet')|join(', ') }}</div>
+                    {% endif %}
+                    <div class="projects-slider__item-date">
+                    {% set date_parts = projet.meta('date')|split('/') %}
+                    {{ date_parts[1] }}/{{ date_parts[2] }}
+                    </div>
+                </div>
+                <div class="projects-slider__item-tags">
+                    {% for competence in projet.terms('competence') %}
+                        <span class="bento-card__tag">{{ competence.name }}</span>
+                    {% endfor %}
+                    <a href="{{ projet.link }}" class="bento-card__add-button bento-card__add-button__dark">+</a>
+                </div>
+            </div>
+            {% endfor %}        
+            
+          </div>
+          <div class="projects-discover-more">
+            <a href="{{site.link}}/projets/" class="discover-more">Découvrir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>

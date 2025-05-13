@@ -1,0 +1,115 @@
+.form-group {
+  margin-bottom: toRem(20);
+  
+  input, textarea {
+    width: 100%;
+    padding: toRem(15) toRem(20);
+    border-radius: toRem(15);
+    border: none;
+    font-size: toRem(16);
+    background-color: white;
+    box-sizing: border-box; 
+  }
+}
+
+// Styles pour la section contact
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: toRem(15);
+  margin-bottom: toRem(30);
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color--dark);
+  color: white;
+  text-decoration: none;
+  padding: toRem(12) toRem(20);
+  border-radius: toRem(30);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  width: auto; // Remplace min-width pour s'adapter au contenu
+  
+  &:hover {
+    transform: translateY(-3px);
+  }
+  
+  .contact-icon {
+    width: toRem(24);
+    height: toRem(24);
+    margin-right: toRem(10);
+    filter: brightness(0) invert(1);
+    flex-shrink: 0; // Empêche l'icône de rétrécir
+  }
+  
+  span {
+    font-size: toRem(14);
+    font-weight: 600;
+    white-space: nowrap; // Empêche le texte de se retourner à la ligne
+  }
+}
+
+// Conteneur du formulaire
+.contact-form-container {
+  background-color: var(--color--dark);
+  border-radius: toRem(15);
+  padding: toRem(25) toRem(30) ;
+  margin: toRem(20);
+  
+  .form-header {
+    margin-bottom: toRem(25);
+    
+    h2 {
+      font-size: toRem(22);
+      color: white;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+}
+
+.send-button {
+  background-color: var(--color--secondary);
+  color: var(--color--light);
+  border: none;
+  border-radius: toRem(30);
+  padding: toRem(12) toRem(25);
+  font-size: toRem(16);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display : block;
+  margin: 0 auto;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.form-response {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.form-response.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-response.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+

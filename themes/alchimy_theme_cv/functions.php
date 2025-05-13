@@ -164,7 +164,45 @@ class StarterSite extends Timber\Site
 		));
 	}
 	/** This is where you can register custom taxonomies. */
-	public function register_taxonomies() {}
+	public function register_taxonomies() {
+		// Custom Taxonomy pour les Compétences
+		register_taxonomy('competence', array('formation', 'projet', 'experience'), array(
+			'labels' => array(
+				'name' => 'Compétences',
+				'singular_name' => 'Compétence',
+				'add_new_item' => 'Ajouter une nouvelle compétence',
+				'edit_item' => 'Modifier la compétence',
+				'new_item' => 'Nouvelle compétence',
+				'view_item' => 'Voir la compétence',
+				'search_items' => 'Rechercher des compétences',
+				'not_found' => 'Aucune compétence trouvée',
+				'not_found_in_trash' => 'Aucune compétence trouvée dans la corbeille',
+			),
+			'hierarchical' => true,
+			'show_admin_column' => true,
+			'rewrite' => array('slug' => 'competences'),
+			'show_in_rest' => true,
+		));
+
+		// Custom Taxonomy pour les types de Projets
+		register_taxonomy('type_projet', array('projet'), array(
+			'labels' => array(
+				'name' => 'Types de Projets',
+				'singular_name' => 'Type de Projet',
+				'add_new_item' => 'Ajouter un nouveau type de projet',
+				'edit_item' => 'Modifier le type de projet',	
+				'new_item' => 'Nouveau type de projet',
+				'view_item' => 'Voir le type de projet',
+				'search_items' => 'Rechercher des types de projets',
+				'not_found' => 'Aucun type de projet trouvé',
+				'not_found_in_trash' => 'Aucun type de projet trouvé dans la corbeille',
+			),
+			'hierarchical' => true,
+			'show_admin_column' => true,
+			'rewrite' => array('slug' => 'types-de-projets'),
+			'show_in_rest' => true,
+		));
+	}
 
 	/** This is where you add some context
 	 *
@@ -235,13 +273,54 @@ class StarterSite extends Timber\Site
 	{
 		$twig->addExtension(new Twig\Extension\StringLoaderExtension());
 		$twig->addFilter(new Twig\TwigFilter('myfoo', array($this, 'myfoo')));
+		
 		return $twig;
 	}
 
+	// Fonction auxiliaire pour attribuer des classes de taille aux blocs
+	private function get_bento_size_class($index, $element) {
+		$classes = ['bento-small', 'bento-medium', 'bento-large'];
+		
+		// Les titres sont toujours larges
+		if (strpos($element, '<h') === 0) {
+			return 'bento-heading bento-large';
+		}
+		
+		// Les images alternent entre moyennes et grandes
+		if (strpos($element, '<img') !== false || strpos($element, '<figure') !== false) {
+			return 'bento-image ' . ($index % 2 == 0 ? 'bento-medium' : 'bento-large');
+		}
+		
+		// Les paragraphes alternent entre petits et moyens
+		return 'bento-paragraph ' . ($index % 3 == 0 ? 'bento-small' : 'bento-medium');
 	}
+
+}
 
 ////
 //// SITE INITIALIZATION --------------------------------
 ////
 
 new StarterSite();
+
+// Inclusion du fichier de traitement du formulaire
+require_once get_template_directory() . '/includes/process-form.php';
+
+// Actions AJAX pour le formulaire de contact
+add_action('wp_ajax_contact_form_submit', 'handle_contact_form_submit');
+add_action('wp_ajax_nopriv_contact_form_submit', 'handle_contact_form_submit');
+
+function handle_contact_form_submit() {
+    $response = process_contact_form();
+    wp_send_json($response);
+}
+
+// Ajout des variables JavaScript pour AJAX
+function add_contact_form_scripts() {
+    wp_localize_script('app', 'contactFormAjax', array(
+        'nonce' => wp_create_nonce('contact_form')
+    ));
+    
+    wp_add_inline_script('app', 'var ajaxurl = "' . admin_url('admin-ajax.php') . '";', 'before');
+}
+add_action('wp_enqueue_scripts', 'add_contact_form_scripts');

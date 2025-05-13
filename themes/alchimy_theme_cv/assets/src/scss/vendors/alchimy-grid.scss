@@ -51,6 +51,22 @@ $grid-breakpoints: (
     }
   }
 
+  // classe pour les rangées à hauteur égale
+  .row--equal-height {
+    display: flex;
+    flex-wrap: wrap;
+    
+    > [class^="col-"],
+    > [class*=" col-"] {
+      display: flex;
+      flex-direction: column;
+      
+      > * {
+        flex: 1;
+      }
+    }
+  }
+
   // Columns
   [class^="col-"],
   [class*=" col-"] {
@@ -94,6 +110,105 @@ $grid-breakpoints: (
           margin-left: (math.div(100%, $grid-columns) * $i);
         }
       }
+    }
+  }
+
+  // Ajouter ce correctif pour la résolution intermédiaire
+  @media (max-width: 900px) and (min-width: 600px) {
+    .row--equal-height {
+      > .col-md-6,
+      > .col-md-4,
+      > .col-md-8 {
+    
+        width: 100% !important;
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      // Pour le bloc compétences
+      > .col-12:nth-child(2) {
+        width: 100% !important;
+      }
+    }
+
+  
+    .container-fluid {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+
+    .row--equal-height {
+      > [class^="col-"],
+      > [class*=" col-"] {
+        width: 100% !important;
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+      }
+      
+
+      > div:first-child {
+        width: 100% !important;
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+        
+        .profile-card {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  
+
+  @media (width: 743px) {
+    .container-fluid {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .row {
+      width: 100%;
+    }
+    
+    .row--equal-height > [class^="col-"] {
+      width: 100% !important;
+    }
+  }
+
+
+  @media (max-width: 599px) {
+    .container-fluid {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+    [class^="col-"],
+    [class*=" col-"] {
+      width: 100% !important;
+      padding-left: 0;
+      padding-right: 0;
+      margin-bottom: 10px;
+    }
+    
+
+    .row--equal-height {
+      > [class^="col-"],
+      > [class*=" col-"] {
+        flex-basis: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+    
+    .profile-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 10px !important;
     }
   }
 }

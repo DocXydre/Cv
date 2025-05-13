@@ -1,41 +1,92 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <article class="formation">
-        <div class="formation__header">
-            <h1 class="formation__title">{{ post.title }}</h1>
-            
-            {% if post.get_field('institution') %}
-                <div class="formation__institution">{{ post.get_field('institution') }}</div>
-            {% endif %}
-            
-            <div class="formation__meta">
-                {% if post.get_field('date_start') %}
-                    <span class="formation__date">
-                        {{ post.get_field('date_start')|date('Y') }}
-                        {% if post.get_field('date_end') %}
-                            - {{ post.get_field('date_end')|date('Y') }}
-                        {% else %}
-                            - {{ 'Present'|trans }}
-                        {% endif %}
-                    </span>
-                {% endif %}
+<div class="container-fluid">
+  <!-- En-tête de formation -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-header">
+        <h1 class="single-title">{{ post.title }}</h1>
+        
+        <div class="single-meta-info">
+          <!-- Institution & Location -->
+          <div class="info-item">
+            <div class="info-icon">
+              <img src="{{ theme.link }}/assets/src/img/location.svg" alt="Location" class="info-icon__svg">
+            </div>
+            <div class="info-content">
+              {% if post.meta('institution') %}
+                {{ post.meta('institution') }},
+              {% endif %}
+              {{ post.meta('location') }}
+            </div>
+          </div>
+          
+          <!-- Date -->
+          <div class="info-item">
+            <div class="info-icon">
+              <img src="{{ theme.link }}/assets/src/img/calendrier.svg" alt="Date" class="info-icon__svg">
+            </div>
+            <div class="info-content">
+              {{ post.meta('date_start')|date('Y') }}
+              {% if post.meta('date_end') %}
+                {% if post.meta('date_end')|split('/')|last == post.meta('date_start')|date('Y') %}
                 
-                {% if post.get_field('location') %}
-                    <span class="formation__location">{{ post.get_field('location') }}</span>
+                {% else %}
+                  - {{ post.meta('date_end')|split('/')|last }}
                 {% endif %}
+              {% else %}
+                - Actuellement
+              {% endif %}
             </div>
-        </div>
-        
-        <div class="formation__content">
-            {{ post.content }}
-        </div>
-        
-        {% if post.get_field('diploma') %}
-            <div class="formation__diploma">
-                <h3>{{ 'Diploma'|trans }}</h3>
-                {{ post.get_field('diploma') }}
+          </div>
+          
+          <!-- Diploma (if exists) -->
+          {% if post.meta('diploma') %}
+            <div class="info-item">
+              <div class="info-icon">
+                <img src="{{ theme.link }}/assets/src/img/diplome.svg" alt="Diplôme" class="info-icon__svg">
+              </div>
+              <div class="info-content">
+                {{ post.meta('diploma') }}
+              </div>
             </div>
-        {% endif %}
-    </article>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contenu de formation -->
+  <div class="row">
+    <div class="col-16">
+      <div class="single-content">
+        {{ post.content }}
+      </div>
+    </div>
+  </div>
+
+  <div class="single-header">
+        <h1 class="single-title">Ressources</h1>
+    </div>
+  
+  <div class="container-fluid">
+    <div class="row row--equal-height">
+      <!-- Formations -->
+      {% include 'formation.twig' with {
+        'titre': 'Autre formation',
+      } %}
+
+      <!-- Expérience -->
+      {% include 'experience.twig' with {
+        'titre': 'Expérience liée à la formation',
+      } %}
+
+      <!-- Projets -->
+      {% include 'projet.twig' with {
+        'titre': 'Projets liés à la formation',
+      } %}
+    </div>
+  </div>
+</div>
 {% endblock %}

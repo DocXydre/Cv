@@ -17,9 +17,6 @@
 				<span>{{ item.title }}</span>
 				{% endif %}
 			</a>
-			{% if item.children %}
-			{% include "menu.twig" with {'items': item.children} %}
-			{% endif %}
 		</li>
 	{% endfor %}
 	</ul>

@@ -29,11 +29,14 @@ $localMode:0; // set to 1 to switch redirect to localhost
 ////
 @import "components/button.scss";
 @import "components/nav.scss";
+@import "components/bento-grid.scss";  // Nouveau composant bento
+@import "components/single-grid.scss"; // Nouveau composant single
 
 ////
 //// PAGES / BLOCKS
 ////
 @import "partials/footer";
+@import "partials/contact";
 @import "pages/home";
 
 @include alchimy-grid;

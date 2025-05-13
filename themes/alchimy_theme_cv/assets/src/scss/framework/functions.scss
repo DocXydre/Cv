@@ -1,6 +1,6 @@
 // Will convert a float in pixel to equivalent float in rem.
 @function toRem($pixelValue) {
-  $remValue: calc($pixelValue / 16) + rem;
+  $remValue: calc(#{$pixelValue} / 16 * 1rem);
   @return $remValue;
 }
 
